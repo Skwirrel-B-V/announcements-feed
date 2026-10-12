@@ -1,5 +1,9 @@
 # Skwirrel announcement feed
 
+> **This repository is public.** Everything committed here is readable by anyone and published to customers when merged to `main`. See [CLAUDE.md](CLAUDE.md) for the rules.
+
+Live feed: <https://skwirrel-b-v.github.io/announcements-feed/feed.json>
+
 Central, version-controlled customer announcements for Skwirrel. The public `feed.json` is the single source of truth for release updates, upcoming changes, 2BA, ETIM and general notices.
 
 ## Publishing

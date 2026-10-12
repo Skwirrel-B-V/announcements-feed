@@ -1,0 +1,18 @@
+{
+  "id": "example-2ba-2026",
+  "type": "2ba",
+  "publishedAt": "2026-10-12T12:00:00Z",
+  "priority": "important",
+  "title": {
+    "en": "Example 2BA update",
+    "nl": "Voorbeeld 2BA-update",
+    "de": "Beispiel: 2BA-Update",
+    "fr": "Exemple de mise à jour 2BA"
+  },
+  "body": {
+    "en": "Replace this example with a verified notice.",
+    "nl": "Vervang dit voorbeeld door een geverifieerd bericht.",
+    "de": "Dieses Beispiel durch eine bestätigte Meldung ersetzen.",
+    "fr": "Remplacez cet exemple par une annonce vérifiée."
+  }
+}

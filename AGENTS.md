@@ -54,7 +54,8 @@ Each item requires `id` (unique, stable, never reused), `type`, `publishedAt`,
   (`normal` or `important`)
 - Dates: ISO 8601 UTC, e.g. `2026-10-12T12:00:00Z`
 - `body` is Markdown. Clients must treat it as untrusted and render it safely,
-  so keep it simple: no raw HTML, no scripts, no tracking links.
+  so keep it simple: no raw HTML, no scripts, no tracking links. `validate.mjs`
+  rejects HTML tags and non-HTTPS Markdown links; the rest is on the reviewer.
 
 ## Rules
 
@@ -70,6 +71,7 @@ Each item requires `id` (unique, stable, never reused), `type`, `publishedAt`,
 - To retire an item, set `expiresAt` or remove it in a PR. Don't rewrite history.
 - An empty `announcements` array is valid and means nothing to show.
 - Keep dependencies at zero. `validate.mjs` runs on plain Node.
+- Keep `AGENTS.md` identical to `CLAUDE.md`. CI fails when they differ.
 
 ## Where this fits
 

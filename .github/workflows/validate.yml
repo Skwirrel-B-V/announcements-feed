@@ -12,3 +12,5 @@ jobs:
         with:
           node-version: '22'
       - run: node scripts/validate.mjs
+      - name: AGENTS.md mirrors CLAUDE.md
+        run: cmp CLAUDE.md AGENTS.md

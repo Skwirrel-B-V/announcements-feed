@@ -8,6 +8,10 @@ for(const item of feed.announcements){
  if(!types.includes(item.type))fail('Invalid type: '+item.id);
  if(typeof item.publishedAt!=='string'||!Number.isFinite(Date.parse(item.publishedAt)))fail('Invalid date: '+item.id);
  for(const key of ['title','body'])for(const lang of languages)if(typeof item[key]?.[lang]!=='string'||!item[key][lang].trim())fail('Missing '+key+'.'+lang+': '+item.id);
+ for(const lang of languages){
+  if(/<\/?[a-z!]/i.test(item.title[lang])||/<\/?[a-z!]/i.test(item.body[lang]))fail('HTML is not allowed in '+lang+': '+item.id);
+  for(const m of item.body[lang].matchAll(/\]\(\s*([^)\s]*)/g))if(!/^https:\/\//i.test(m[1]))fail('Markdown links must be HTTPS ('+lang+'): '+item.id);
+ }
  if(item.expiresAt!==undefined&&!Number.isFinite(Date.parse(item.expiresAt)))fail('Invalid expiry');
  if(item.priority!==undefined&&!['normal','important'].includes(item.priority))fail('Invalid priority');
  if(item.url!==undefined){try{const u=new URL(item.url);if(u.protocol!=='https:')fail('URL must be HTTPS')}catch{fail('Invalid URL')}}

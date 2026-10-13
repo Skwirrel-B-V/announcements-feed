@@ -10,7 +10,7 @@ The existing feed instead uses `en`, `nl`, `de`, `fr` and a single Markdown `bod
 
 The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who it binds:
 
-- **Producer** rules apply to the feed content. The v2 validator in this repo enforces them on every PR.
+- **Producer** rules apply to the feed content. The v2 validator, to be added by step 2 of the plan below, will enforce them on every PR. Until then, `scripts/validate.mjs` checks only the v1 `feed.json`.
 - **Reader** rules apply to the Skwirrel app that consumes the feed. The validator cannot see them; the reader's own tests cover them.
 - **Reviewer** rules need history or judgement the validator does not have. The PR reviewer checks them.
 
@@ -35,7 +35,7 @@ In the format sections below, a rule without a label is a producer rule: it desc
 | Field | Required | Rule |
 |---|---|---|
 | `schemaVersion` | yes | The integer `2`. Reader: MUST ignore a feed with any other value and keep its last-known-good data. |
-| `updatedAt` | yes | Timestamp. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
+| `updatedAt` | yes | Timestamp, at most 24 hours later than the validator's clock, so a typo far in the future cannot lock the feed. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
 | `announcements` | yes | Array of announcement items. May be empty. IDs MUST be unique within the array. |
 
 Producer: member names MUST be unique within every JSON object, and the validator checks this on the raw text, before parsing would silently drop a duplicate. The validator also rejects unknown fields at every level (feed, item, `releaseNotes`, locale, section, group, item, table), so a typo such as `prority` fails in CI. Within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added, and they are added to this document in the same PR that first uses them. Anything else needs `schemaVersion: 3`.
@@ -94,12 +94,12 @@ When a release ships, `type`, `status` and `released_on` change in the same comm
 `revision` drives the unread indicator, so producers MUST manage it as follows:
 
 - A new item starts at `1`.
-- Any change to content a reader sees MUST make it greater than the value on `main`: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on`, `releaseNotes.icon`, `priority` or `url`. Compare effective values: an absent `priority` equals `"normal"`, so adding or removing an explicit `"normal"` is no change. This includes correcting a typo, so readers see corrections. Bumping by 1 per PR is the convention, however many edits the PR holds.
+- Any change to content a reader sees MUST make it greater than the value on `main`: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on` when the status is `released` (readers ignore it on an upcoming release), `releaseNotes.icon`, `priority` or `url`. Compare effective values: an absent `priority` equals `"normal"`, so adding or removing an explicit `"normal"` is no change. This includes correcting a typo, so readers see corrections. Bumping by 1 per PR is the convention, however many edits the PR holds.
 - `publishedAt` and `expiresAt` change when an item is shown, not what it says, so they MAY keep the revision: moving an item's start or end does not mark it unread again.
 - JSON formatting MAY keep it: whitespace between tokens (not inside a string) and the order of keys other than locale keys. The order of locale keys is content, because it decides the same-language fallback (see [Locales](#locales)): reordering them MUST bump the revision.
 - It MUST never decrease and MUST never be reset.
 
-The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat an item as unread when the pair (`id`, `revision`) has not been seen.
+The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat a visible item as unread when the pair (`id`, `revision`) has not been seen. Items hidden by `publishedAt` or `expiresAt` never count toward the unread indicator.
 
 For that comparison to hold, the repo MUST be set up so that:
 
@@ -128,7 +128,7 @@ Producer: a section's `kind` MUST be allowed for its item, per the *Used in* col
 
 Unknown kinds and fields:
 
-- Producer: the validator rejects a `kind` not in this table, and a field not listed for its kind.
+- Producer: the validator rejects a `kind` not in this table, and a field not listed for its kind. A kind added within v2 MUST carry its full content in the generic fields (`heading`, `text`, `items`, `groups`, `table`), so a reader that renders it generically shows everything. New fields on such a kind may only add to that, never replace it.
 - Reader: MUST render a section with an unknown `kind` generically (its `heading`, `text`, `items`, `groups` and `table`, where present) instead of dropping it, and ignore unknown fields. That keeps adding a kind non-breaking for apps already in the field.
 
 Building blocks:
@@ -227,7 +227,7 @@ These steps are a plan, not feed rules. Where a step states a rule, it is labell
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.
 3. Publish the v2 feed document from GitHub Pages as `feed-v2.json`, next to the v1 `feed.json`. Make the URL configurable.
 4. Reader: the Skwirrel backend MUST fetch with a short timeout, cache the last-known-good feed, render inline markup only as described in [Text and markup](#text-and-markup), and fall back to bundled release notes when there is no usable feed. Reader rules:
-   - Reader: MUST keep its cached feed when a fetched feed's `updatedAt` is older than the cached one's, so a stale CDN copy never rolls the feed back. An equal `updatedAt` means the same feed; keep the cache.
+   - Reader: MUST keep its cached feed when a fetched feed's `updatedAt` is older than the cached one's, so a stale CDN copy never rolls the feed back. An equal `updatedAt` means the same feed; keep the cache. A cached feed whose `updatedAt` is more than 24 hours in the future never blocks a newer fetch.
    - Reader: a feed that is not valid JSON, has another `schemaVersion`, or has a missing or invalid `updatedAt` or `announcements`, MUST be ignored as a whole; keep last-known-good.
    - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). The reader does check `revision` itself (present, an integer, in range), but not markup rules, reviewer rules, or whether a revision was bumped.
    - Reader: when two items that pass the rule above share an `id`, or two such release items share a `version`, MUST keep the first in the `announcements` array and skip the later ones. A skipped invalid item does not reserve its `id` or `version`.

@@ -36,7 +36,7 @@ A rule without a label is a producer rule: it describes valid content, and the v
 | `updatedAt` | yes | ISO 8601 UTC. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
 | `announcements` | yes | Array of announcement items. May be empty. IDs MUST be unique within the array. |
 
-Producer: the validator rejects unknown fields at every level (feed, item, `releaseNotes`, locale, section, group, item, table), so a typo such as `prority` fails in CI. Within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added, and they are added to this document in the same PR that first uses them. Anything else needs `schemaVersion: 3`.
+Producer: member names MUST be unique within every JSON object, and the validator checks this on the raw text, before parsing would silently drop a duplicate. The validator also rejects unknown fields at every level (feed, item, `releaseNotes`, locale, section, group, item, table), so a typo such as `prority` fails in CI. Within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added, and they are added to this document in the same PR that first uses them. Anything else needs `schemaVersion: 3`.
 
 Reader: MUST ignore unknown fields, so apps already in the field keep working when an optional field is added.
 
@@ -65,7 +65,7 @@ Both `locales` and `releaseNotes.locales` are maps from a locale key to `{title,
 - `intro` MUST be a string and MAY be empty.
 - `sections` MUST be an array, see [Sections](#sections).
 
-Reader: pick the user's locale; when it is missing, fall back to the first key with the same language in the order the keys appear in the JSON (`nl-BE` to `nl-NL`), then to `en-GB`. The language is the part before the first `-` or `_`, compared case-insensitively, so `NL_be` also falls back to `nl-NL`. Producers who add two locales of one language put the preferred fallback first.
+Reader: pick the key that equals the user's locale exactly (a literal, case-sensitive match, as keys are written `en-GB`); when there is none, fall back to the first key with the same language in the order the keys appear in the JSON (`nl-BE` to `nl-NL`), then to `en-GB`. The language is the part before the first `-` or `_`, compared case-insensitively, so `NL_be` also falls back to `nl-NL`. Producers who add two locales of one language put the preferred fallback first.
 
 ### Release items
 
@@ -225,7 +225,8 @@ These are illustrative only. Do not publish examples as customer news.
 4. Reader: the Skwirrel backend MUST fetch with a short timeout, cache the last-known-good feed, render inline markup only as described in [Text and markup](#text-and-markup), and fall back to bundled release notes when there is no usable feed. Reader rules:
    - Reader: a feed that is not valid JSON, has another `schemaVersion`, or has a missing or invalid `updatedAt` or `announcements`, MUST be ignored as a whole; keep last-known-good.
    - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). Markup, reviewer and revision rules are not checked by the reader.
-   - Reader: when two items share an `id`, or two release items share a `version`, MUST keep the first in the `announcements` array and skip the later ones.
+   - Reader: when two items that pass the rule above share an `id`, or two such release items share a `version`, MUST keep the first in the `announcements` array and skip the later ones. A skipped invalid item does not reserve its `id` or `version`.
+   - Reader: MUST show visible items newest first by `publishedAt`; items with the same `publishedAt` keep their order in the `announcements` array.
    - Reader: MUST hide an item before its `publishedAt` and after its `expiresAt`. This controls the flyout and the announcements view only. Bundled release notes always stay on the release tabs, so a tenant never loses the notes for the version it runs.
 5. Flyout: show latest announcements alongside upcoming and recent releases, with a single unread indicator based on announcement IDs and revisions. Page: retain existing release tabs and add an announcements view.
 6. Keep version-specific release notes accurate for the installed tenant. Filter releases newer than the tenant version or clearly label them as upcoming. Do not imply an unreleased feature is already available.

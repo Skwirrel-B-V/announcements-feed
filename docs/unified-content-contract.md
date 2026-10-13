@@ -31,10 +31,12 @@ The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who 
 | Field | Required | Rule |
 |---|---|---|
 | `schemaVersion` | yes | The integer `2`. Reader: MUST ignore a feed with any other value and keep its last-known-good data. |
-| `updatedAt` | yes | ISO 8601 UTC. Bumped on every change to the feed. |
+| `updatedAt` | yes | ISO 8601 UTC. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
 | `announcements` | yes | Array of announcement items. May be empty. IDs MUST be unique within the array. |
 
-Reader: MUST ignore unknown fields. Producer: within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added. Anything else needs `schemaVersion: 3`.
+Producer: the validator rejects unknown fields at every level (feed, item, `releaseNotes`, locale, section, group, item), so a typo such as `prority` fails in CI. Within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added, and they are added to this document in the same PR that first uses them. Anything else needs `schemaVersion: 3`.
+
+Reader: MUST ignore unknown fields, so apps already in the field keep working when an optional field is added.
 
 ### Announcement item
 
@@ -45,18 +47,34 @@ Reader: MUST ignore unknown fields. Producer: within v2, only optional fields an
 | `publishedAt` | yes | ISO 8601 UTC. |
 | `revision` | yes | Integer, see [Revision](#revision). |
 | `releaseNotes` | Required for release items | See [Release items](#release-items). MUST be absent for other announcements. |
-| `locales` | Required for other announcements | Map with `en-GB`, `nl-NL`, `de-DE`, `fr-FR`, each `{title, intro, sections}`. MUST be absent for release items. |
+| `locales` | Required for other announcements | See [Locales](#locales). MUST be absent for release items. |
 | `priority` | no | `normal` (default when absent) or `important`. |
 | `url` | no | HTTPS only. |
 | `expiresAt` | no | ISO 8601 UTC, later than `publishedAt`. |
 
 So the release example below is valid without `priority` and `url`, and the non-release example is valid without `url`.
 
+### Locales
+
+Both `locales` and `releaseNotes.locales` are maps from a locale key to `{title, intro, sections}`:
+
+- The map MUST contain at least `en-GB`, `nl-NL`, `de-DE` and `fr-FR`. Extra locale keys (for a language the app adds later) MAY appear and get the same checks, including [locale parity](#sections).
+- `title` MUST be a non-empty string. It is plain text, see [Text and markup](#text-and-markup).
+- `intro` MUST be a string and MAY be empty.
+- `sections` MUST be an array, see [Sections](#sections).
+
+Reader: pick the user's locale; when it is missing, fall back to the same language (`nl-BE` to `nl-NL`), then to `en-GB`.
+
 ### Release items
 
-`releaseNotes` preserves the existing Skwirrel release-note file verbatim: `version` and `status` (required), `released_on` (see below), `icon` (optional, a Phosphor icon class; readers fall back to a default icon) and `locales` (required). Every release-note file that Skwirrel ships today MUST pass the v2 validator unchanged.
+`releaseNotes` preserves the existing Skwirrel release-note file verbatim: `version` and `status` (required), `released_on` (see below), `icon` (optional; readers fall back to a default icon) and `locales` (required, see [Locales](#locales)).
 
-`type` and `releaseNotes.status` MUST agree. The validator rejects any other pairing:
+- `version` MUST be unique across release items, and the item's `id` MUST be `release-<version>`. The reader keys releases by version, and the fixed id lets it match a feed item to the bundled file it falls back to.
+- `icon`, when present, MUST match `^ph-[a-z0-9-]+$` (a Phosphor icon class), so a typo fails in CI instead of showing no icon.
+
+**Bundled release-note files.** The same rules apply to the release-note files bundled with Skwirrel. A bundled file is a bare `releaseNotes` object: it has no `id`, `type` or `revision`, so those rules are skipped and the `released_on` rule below is applied by `status` alone. The v2 validator offers a mode that checks a single bare file or a directory of them, and Skwirrel CI runs it on its bundled files. Every release-note file that Skwirrel ships today MUST pass that mode unchanged.
+
+For feed items, `type` and `releaseNotes.status` MUST agree. The validator rejects any other pairing:
 
 | `type` | `releaseNotes.status` | `releaseNotes.released_on` |
 |---|---|---|
@@ -77,6 +95,13 @@ When a release ships, `type`, `status` and `released_on` change in the same comm
 
 The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat an item as unread when the pair (`id`, `revision`) has not been seen.
 
+For that comparison to hold, the repo MUST be set up so that:
+
+- The CI workflow fetches `origin/main` explicitly (the default checkout has depth 1 and no `main`). On a pull request it compares against `origin/main`; on a push to `main` it compares against the previous commit (`HEAD^`).
+- Branch protection on `main` requires a pull request to be up to date with `main` before it merges. Otherwise two PRs can both bump an item from 1 to 2 and both pass, and readers who already saw (`id`, 2) never see the second change as unread.
+
+The validator PR sets up both.
+
 ### Sections
 
 Both `releaseNotes.locales.*.sections` and `locales.*.sections` are arrays of section objects. An empty array is allowed.
@@ -93,21 +118,19 @@ Every section has `kind` and `heading` (a non-empty string in the locale's langu
 | `integrators` | release items | `text` (required), `table` (required) |
 | `general` | other announcements | `text` and/or `items`, at least one |
 
-Producer: release items SHOULD use the kinds in the order listed, each at most once; the validator warns but does not fail. Other announcements normally have one `general` section.
+Producer: a section's `kind` MUST be allowed for its item, per the *Used in* column, so a `general` section in a release item fails. Release items SHOULD use the kinds in the order listed, each at most once; the validator warns but does not fail. Other announcements normally have one `general` section.
 
 Unknown kinds and fields:
 
-- Producer: the validator rejects a `kind` not in this table, and a field not listed for its kind. A new kind is added here first, in the same PR that first uses it.
+- Producer: the validator rejects a `kind` not in this table, and a field not listed for its kind.
 - Reader: MUST render a section with an unknown `kind` generically (its `heading`, `text`, `items`, `groups` and `table`, where present) instead of dropping it, and ignore unknown fields. That keeps adding a kind non-breaking for apps already in the field.
 
 Building blocks:
 
-- **item**: a non-empty string, or `{"title": "Bold lead.", "text": "The rest."}`. In the object form either string may be empty (a lead-only or text-only item), but not both.
+- **item**: a non-empty string, or `{"title": "Bold lead.", "text": "The rest."}`. In the object form both keys MUST be present; either string may be empty (a lead-only or text-only item), but not both.
 - **group**: `{"title": string, "text"?: string, "items"?: item[]}`. At least one of `text` or `items`.
 - **table**: `{"columns": string[], "rows": string[][]}`. Every row has exactly as many cells as `columns`.
 - `items`, `groups`, `columns` and `rows` MUST be non-empty arrays when present.
-
-Every text field supports only inline markup: `` `code` ``, `**bold**` and `*italic*`. Reader: MUST escape everything else, so HTML is shown as typed. Producer: the validator rejects HTML tags outside `` `code` `` spans, as a second line of defence.
 
 Locale parity: every locale MUST have the same sections in the same order, with the same `kind`s, the same number of groups, items, columns and rows as `en-GB`. This matches the parity check Skwirrel already runs on its bundled files, plus columns.
 
@@ -126,6 +149,23 @@ Example `new` section:
   ]
 }
 ```
+
+### Text and markup
+
+Text fields come in two kinds:
+
+| Kind | Fields | Rendering |
+|---|---|---|
+| Plain text | locale `title`, section `heading`, group `title`, table `columns` | Shown as typed. No markup. |
+| Inline markup | locale `intro`, section `text`, group `text`, item strings and item `title`/`text`, table cells | `` `code` ``, `**bold**` and `*italic*` only |
+
+Definitions, so every implementation agrees:
+
+- A **code span** is a match of `` `[^`]+` ``. Its content is shown literally, without bold or italic.
+- An **HTML tag** is a match of `<\/?[a-zA-Z!]` outside a code span (the same check as the v1 validator).
+- A **link** is a match of `](` outside a code span. v2 has no inline links, unlike the v1 `body`: an item links out through its `url` field.
+
+Producer: the validator rejects HTML tags and links in every text field, and warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed.
 
 ### Examples
 
@@ -174,9 +214,12 @@ These are illustrative only. Do not publish examples as customer news.
 ## Migration and application integration
 
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
-2. Add schema v2 validation for everything marked MUST above: the feed document, required fields, `type`/status pairing, revision bumps against `main`, section shapes, locale parity, and duplicate IDs.
+2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.
 3. Publish the v2 feed document from GitHub Pages as `feed-v2.json`, next to the v1 `feed.json`. Make the URL configurable.
-4. Skwirrel backend should fetch with a short timeout and cache last-known-good data, sanitize rendered inline markup, and fall back to bundled release notes on failure.
+4. Skwirrel backend should fetch with a short timeout and cache last-known-good data, sanitize rendered inline markup, and fall back to bundled release notes on failure. Reader rules:
+   - A feed that is not valid JSON, or has another `schemaVersion`, is ignored as a whole; keep last-known-good.
+   - An item that breaks a rule is skipped on its own; the rest of the feed is shown.
+   - Hide an item before its `publishedAt` and after its `expiresAt`.
 5. Flyout: show latest announcements alongside upcoming and recent releases, with a single unread indicator based on announcement IDs and revisions. Page: retain existing release tabs and add an announcements view.
 6. Keep version-specific release notes accurate for the installed tenant. Filter releases newer than the tenant version or clearly label them as upcoming. Do not imply an unreleased feature is already available.
 7. Once integration is verified, migrate historical release JSON files and retire the duplicated source in a separate PR.

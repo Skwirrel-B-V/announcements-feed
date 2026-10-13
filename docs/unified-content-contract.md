@@ -47,7 +47,7 @@ Reader: MUST ignore unknown fields, so apps already in the field keep working wh
 | `id` | yes | Non-empty string, unique within the feed. Reviewer: never reuse or change an id, also not one from a removed item. |
 | `type` | yes | `release`, `upcoming`, `2ba`, `etim` or `general`. |
 | `publishedAt` | yes | ISO 8601 UTC. |
-| `revision` | yes | Integer, see [Revision](#revision). |
+| `revision` | yes | Integer from `1` to `9007199254740991` (the largest integer JavaScript and JSON parsers keep exact), see [Revision](#revision). |
 | `releaseNotes` | Required for release items | See [Release items](#release-items). MUST be absent for other announcements. |
 | `locales` | Required for other announcements | See [Locales](#locales). MUST be absent for release items. |
 | `priority` | no | `normal` (default when absent) or `important`. |
@@ -65,18 +65,18 @@ Both `locales` and `releaseNotes.locales` are maps from a locale key to `{title,
 - `intro` MUST be a string and MAY be empty.
 - `sections` MUST be an array, see [Sections](#sections).
 
-Reader: pick the user's locale; when it is missing, fall back to the first key with the same language in the order the keys appear in the JSON (`nl-BE` to `nl-NL`), then to `en-GB`. Producers who add two locales of one language put the preferred fallback first.
+Reader: pick the user's locale; when it is missing, fall back to the first key with the same language in the order the keys appear in the JSON (`nl-BE` to `nl-NL`), then to `en-GB`. The language is the part before the first `-` or `_`, compared case-insensitively, so `NL_be` also falls back to `nl-NL`. Producers who add two locales of one language put the preferred fallback first.
 
 ### Release items
 
 `releaseNotes` preserves the existing Skwirrel release-note file verbatim: `version` and `status` (required), `released_on` (see below), `icon` (optional; readers fall back to a default icon) and `locales` (required, see [Locales](#locales)).
 
-- `version` MUST be a string matching `^[0-9]+\.[0-9]+\.[0-9]+$` (for example `2.3.0` or `2.1.10`), unique across release items. The item's `id` MUST be `release-<version>`. The reader keys releases by version, and the fixed id lets it match a feed item to the bundled file it falls back to.
+- `version` MUST be a string matching `^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$` (for example `2.3.0` or `2.1.10`, never `02.3.0`), unique across release items. The item's `id` MUST be `release-<version>`. The reader keys releases by version, and the fixed id lets it match a feed item to the bundled file it falls back to.
 - `version` MUST NOT change, because the `id` is derived from it and an id never changes. To renumber a release, remove the old item and add a new one at revision 1.
 - `status` MUST be `upcoming` or `released`, also in a bare file.
-- `icon`, when present, MUST match `^ph-[a-z0-9-]+$` (a Phosphor icon class), so a typo fails in CI instead of showing no icon.
+- `icon`, when present, MUST match `^ph-[a-z0-9-]+$` (a Phosphor icon class). This catches a malformed value, not a misspelled icon name; the reviewer checks the name.
 
-**Bundled release-note files.** The same rules apply to the release-note files bundled with Skwirrel. A bundled file is a bare `releaseNotes` object: it has no `id`, `type` or `revision`, so those rules are skipped and the `released_on` rule below is applied by `status` alone. The v2 validator offers a mode that checks a single bare file or a directory of them, and Skwirrel CI runs it on its bundled files. Every release-note file that Skwirrel ships today MUST pass that mode unchanged.
+**Bundled release-note files.** The same rules apply to the release-note files bundled with Skwirrel. A bundled file is a bare `releaseNotes` object: it has no `id`, `type` or `revision`, so those rules are skipped and the `released_on` rule below is applied by `status` alone. The v2 validator offers a mode that checks a single bare file or a directory of them, and Skwirrel CI runs it on its bundled files. In that mode the file name MUST be `<version>.json`, matching the file's own `version`, because Skwirrel finds bundled notes by file name. Every release-note file that Skwirrel ships today MUST pass that mode unchanged.
 
 For feed items, `type` and `releaseNotes.status` MUST agree. The validator rejects any other pairing:
 
@@ -94,14 +94,14 @@ When a release ships, `type`, `status` and `released_on` change in the same comm
 - A new item starts at `1`.
 - Any change to content a reader sees MUST make it greater than the value on `main`: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on`, `releaseNotes.icon`, `priority` or `url`. Compare effective values: an absent `priority` equals `"normal"`, so adding or removing an explicit `"normal"` is no change. This includes correcting a typo, so readers see corrections. Bumping by 1 per PR is the convention, however many edits the PR holds.
 - `publishedAt` and `expiresAt` change when an item is shown, not what it says, so they MAY keep the revision: moving an item's start or end does not mark it unread again.
-- Key order and whitespace MAY keep it.
+- Whitespace and the order of other keys MAY keep it. The order of locale keys is content, because it decides the same-language fallback (see [Locales](#locales)): reordering them MUST bump the revision.
 - It MUST never decrease and MUST never be reset.
 
 The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat an item as unread when the pair (`id`, `revision`) has not been seen.
 
 For that comparison to hold, the repo MUST be set up so that:
 
-- The CI workflow fetches `origin/main` explicitly (the default checkout has depth 1 and no `main`). On a pull request it compares against `origin/main`; on a push to `main` it compares against the state of `main` before the push (`github.event.before`), so a rebase-merge of several commits is checked as one change.
+- The CI workflow fetches what it compares against explicitly, because the default checkout has depth 1. On a pull request it fetches and compares against `origin/main`. On a push to `main` it fetches `github.event.before` by SHA and compares against that, the state of `main` before the push, so a rebase-merge of several commits is checked as one change.
 - Branch protection on `main` requires a pull request to be up to date with `main` before it merges. Otherwise two PRs can both bump an item from 1 to 2 and both pass, and readers who already saw (`id`, 2) never see the second change as unread.
 
 The validator PR sets up both.
@@ -168,10 +168,10 @@ Definitions, so every implementation agrees:
 
 - A **code span** is a match of `` `[^`]+` ``. Its content is shown literally, without bold or italic.
 - An **HTML tag** is a match of `<\/?[a-zA-Z!]` outside a code span. That is the v1 pattern, with code spans exempt.
-- **Bold** and **italic** are applied outside code spans, bold first, with exactly these patterns: bold `\*\*(.+?)\*\*`, then italic `(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])`. Any `*` left over is shown as typed. These are the patterns Skwirrel's reader uses today; a reader in another language MUST produce the same result.
+- **Bold** and **italic**: split the text on code spans, then apply bold and then italic to each remaining piece separately, with `.` matching newlines. Markup never spans a code span. The patterns are exactly: bold `\*\*(.+?)\*\*`, then italic `(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])`. Any `*` left over is shown as typed. These are the patterns Skwirrel's reader uses today; a reader in another language MUST produce the same result.
 - A **link** is a match of `](` outside a code span. v2 has no inline links, unlike the v1 `body`: an item links out through its `url` field.
 
-Producer: the validator rejects HTML tags and links in every text field, and warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed.
+Producer: the validator rejects HTML tags and links in every text field, and warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed. These markup rules are producer-only: a reader never skips an item for its markup, it escapes it.
 
 ### Examples
 
@@ -222,10 +222,11 @@ These are illustrative only. Do not publish examples as customer news.
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.
 3. Publish the v2 feed document from GitHub Pages as `feed-v2.json`, next to the v1 `feed.json`. Make the URL configurable.
-4. Skwirrel backend should fetch with a short timeout and cache last-known-good data, sanitize rendered inline markup, and fall back to bundled release notes on failure. Reader rules:
+4. Reader: the Skwirrel backend MUST fetch with a short timeout, cache the last-known-good feed, render inline markup only as described in [Text and markup](#text-and-markup), and fall back to bundled release notes when there is no usable feed. Reader rules:
    - Reader: a feed that is not valid JSON, has another `schemaVersion`, or has a missing or invalid `updatedAt` or `announcements`, MUST be ignored as a whole; keep last-known-good.
-   - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). Reviewer and revision rules are not checked by the reader.
-   - Reader: MUST hide an item before its `publishedAt` and after its `expiresAt`. For release items, hiding the feed item also hides the bundled release note for that version, so `expiresAt` means the same for both.
+   - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). Markup, reviewer and revision rules are not checked by the reader.
+   - Reader: when two items share an `id`, or two release items share a `version`, MUST keep the first in the `announcements` array and skip the later ones.
+   - Reader: MUST hide an item before its `publishedAt` and after its `expiresAt`. This controls the flyout and the announcements view only. Bundled release notes always stay on the release tabs, so a tenant never loses the notes for the version it runs.
 5. Flyout: show latest announcements alongside upcoming and recent releases, with a single unread indicator based on announcement IDs and revisions. Page: retain existing release tabs and add an announcements view.
 6. Keep version-specific release notes accurate for the installed tenant. Filter releases newer than the tenant version or clearly label them as upcoming. Do not imply an unreleased feature is already available.
 7. Once integration is verified, migrate historical release JSON files and retire the duplicated source in a separate PR.

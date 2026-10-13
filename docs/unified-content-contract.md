@@ -14,7 +14,9 @@ The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who 
 - **Reader** rules apply to the Skwirrel app that consumes the feed. The validator cannot see them; the reader's own tests cover them.
 - **Reviewer** rules need history or judgement the validator does not have. The PR reviewer checks them.
 
-A rule without a label is a producer rule: it describes valid content, and the validator enforces it.
+In the format sections below, a rule without a label is a producer rule: it describes valid content, and the validator enforces it.
+
+**Timestamps.** Every timestamp (`updatedAt`, `publishedAt`, `expiresAt`) MUST match `^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$`, for example `2026-10-12T10:00:00Z`, and MUST be a real calendar date and time (`2026-02-30T10:00:00Z` is rejected). The validator checks the pattern and the calendar itself instead of relying on a lenient date parser.
 
 *Release items* means items of type `release` or `upcoming`. *Other announcements* means items of type `2ba`, `etim` or `general`.
 
@@ -33,7 +35,7 @@ A rule without a label is a producer rule: it describes valid content, and the v
 | Field | Required | Rule |
 |---|---|---|
 | `schemaVersion` | yes | The integer `2`. Reader: MUST ignore a feed with any other value and keep its last-known-good data. |
-| `updatedAt` | yes | ISO 8601 UTC. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
+| `updatedAt` | yes | Timestamp. Producer: MUST be later than `updatedAt` on `main` whenever the feed changes. |
 | `announcements` | yes | Array of announcement items. May be empty. IDs MUST be unique within the array. |
 
 Producer: member names MUST be unique within every JSON object, and the validator checks this on the raw text, before parsing would silently drop a duplicate. The validator also rejects unknown fields at every level (feed, item, `releaseNotes`, locale, section, group, item, table), so a typo such as `prority` fails in CI. Within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added, and they are added to this document in the same PR that first uses them. Anything else needs `schemaVersion: 3`.
@@ -46,13 +48,13 @@ Reader: MUST ignore unknown fields, so apps already in the field keep working wh
 |---|---|---|
 | `id` | yes | Non-empty string, unique within the feed. Reviewer: never reuse or change an id, also not one from a removed item. |
 | `type` | yes | `release`, `upcoming`, `2ba`, `etim` or `general`. |
-| `publishedAt` | yes | ISO 8601 UTC. |
+| `publishedAt` | yes | Timestamp. |
 | `revision` | yes | Integer from `1` to `9007199254740991` (the largest integer JavaScript and JSON parsers keep exact), see [Revision](#revision). |
 | `releaseNotes` | Required for release items | See [Release items](#release-items). MUST be absent for other announcements. |
 | `locales` | Required for other announcements | See [Locales](#locales). MUST be absent for release items. |
 | `priority` | no | `normal` (default when absent) or `important`. |
 | `url` | no | HTTPS only. |
-| `expiresAt` | no | ISO 8601 UTC, later than `publishedAt`. |
+| `expiresAt` | no | Timestamp, later than `publishedAt`. |
 
 So the release example below is valid without `priority` and `url`, and the non-release example is valid without `url`.
 
@@ -94,7 +96,7 @@ When a release ships, `type`, `status` and `released_on` change in the same comm
 - A new item starts at `1`.
 - Any change to content a reader sees MUST make it greater than the value on `main`: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on`, `releaseNotes.icon`, `priority` or `url`. Compare effective values: an absent `priority` equals `"normal"`, so adding or removing an explicit `"normal"` is no change. This includes correcting a typo, so readers see corrections. Bumping by 1 per PR is the convention, however many edits the PR holds.
 - `publishedAt` and `expiresAt` change when an item is shown, not what it says, so they MAY keep the revision: moving an item's start or end does not mark it unread again.
-- Whitespace and the order of other keys MAY keep it. The order of locale keys is content, because it decides the same-language fallback (see [Locales](#locales)): reordering them MUST bump the revision.
+- JSON formatting MAY keep it: whitespace between tokens (not inside a string) and the order of keys other than locale keys. The order of locale keys is content, because it decides the same-language fallback (see [Locales](#locales)): reordering them MUST bump the revision.
 - It MUST never decrease and MUST never be reset.
 
 The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat an item as unread when the pair (`id`, `revision`) has not been seen.
@@ -219,17 +221,20 @@ These are illustrative only. Do not publish examples as customer news.
 
 ## Migration and application integration
 
+These steps are a plan, not feed rules. Where a step states a rule, it is labelled; steps 4 to 6 bind the reader.
+
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.
 3. Publish the v2 feed document from GitHub Pages as `feed-v2.json`, next to the v1 `feed.json`. Make the URL configurable.
 4. Reader: the Skwirrel backend MUST fetch with a short timeout, cache the last-known-good feed, render inline markup only as described in [Text and markup](#text-and-markup), and fall back to bundled release notes when there is no usable feed. Reader rules:
+   - Reader: MUST keep its cached feed when a fetched feed's `updatedAt` is older than the cached one's, so a stale CDN copy never rolls the feed back. An equal `updatedAt` means the same feed; keep the cache.
    - Reader: a feed that is not valid JSON, has another `schemaVersion`, or has a missing or invalid `updatedAt` or `announcements`, MUST be ignored as a whole; keep last-known-good.
-   - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). Markup, reviewer and revision rules are not checked by the reader.
+   - Reader: an item missing a required field, with a field of the wrong type or outside its allowed values, or with a `type`/`status` mismatch, MUST be skipped on its own; the rest of the feed is shown. Unknown fields and unknown section kinds are not errors (see above). The reader does check `revision` itself (present, an integer, in range), but not markup rules, reviewer rules, or whether a revision was bumped.
    - Reader: when two items that pass the rule above share an `id`, or two such release items share a `version`, MUST keep the first in the `announcements` array and skip the later ones. A skipped invalid item does not reserve its `id` or `version`.
    - Reader: MUST show visible items newest first by `publishedAt`; items with the same `publishedAt` keep their order in the `announcements` array.
    - Reader: MUST hide an item before its `publishedAt` and after its `expiresAt`. This controls the flyout and the announcements view only. Bundled release notes always stay on the release tabs, so a tenant never loses the notes for the version it runs.
-5. Flyout: show latest announcements alongside upcoming and recent releases, with a single unread indicator based on announcement IDs and revisions. Page: retain existing release tabs and add an announcements view.
-6. Keep version-specific release notes accurate for the installed tenant. Filter releases newer than the tenant version or clearly label them as upcoming. Do not imply an unreleased feature is already available.
+5. Reader: the flyout shows the latest announcements alongside upcoming and recent releases, with a single unread indicator based on announcement IDs and revisions. Page: retain existing release tabs and add an announcements view.
+6. Reader: keep version-specific release notes accurate for the installed tenant. Filter releases newer than the tenant version or clearly label them as upcoming. Do not imply an unreleased feature is already available.
 7. Once integration is verified, migrate historical release JSON files and retire the duplicated source in a separate PR.
 
 Tenant-specific announcements, personalized targeting and administration UI are phase two.

@@ -8,7 +8,13 @@ The existing feed instead uses `en`, `nl`, `de`, `fr` and a single Markdown `bod
 
 ## Proposed unified v2 format
 
-The key words MUST, MUST NOT, SHOULD and MAY are normative. The v2 validator enforces every MUST.
+The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who it binds:
+
+- **Producer** rules apply to the feed content. The v2 validator in this repo enforces them on every PR.
+- **Reader** rules apply to the Skwirrel app that consumes the feed. The validator cannot see them; the reader's own tests cover them.
+- **Reviewer** rules need history or judgement the validator does not have. The PR reviewer checks them.
+
+*Release items* means items of type `release` or `upcoming`. *Other announcements* means items of type `2ba`, `etim` or `general`.
 
 ### Feed document
 
@@ -24,22 +30,22 @@ The key words MUST, MUST NOT, SHOULD and MAY are normative. The v2 validator enf
 
 | Field | Required | Rule |
 |---|---|---|
-| `schemaVersion` | yes | The integer `2`. A reader MUST ignore a feed with any other value and keep its last-known-good data. |
+| `schemaVersion` | yes | The integer `2`. Reader: MUST ignore a feed with any other value and keep its last-known-good data. |
 | `updatedAt` | yes | ISO 8601 UTC. Bumped on every change to the feed. |
 | `announcements` | yes | Array of announcement items. May be empty. IDs MUST be unique within the array. |
 
-Readers MUST ignore unknown fields. Within v2, only optional fields may be added. Anything else needs `schemaVersion: 3`.
+Reader: MUST ignore unknown fields. Producer: within v2, only optional fields and new section kinds (see [Sections](#sections)) may be added. Anything else needs `schemaVersion: 3`.
 
 ### Announcement item
 
 | Field | Required | Rule |
 |---|---|---|
-| `id` | yes | Non-empty string, unique, never reused or changed. |
+| `id` | yes | Non-empty string, unique within the feed. Reviewer: never reuse or change an id, also not one from a removed item. |
 | `type` | yes | `release`, `upcoming`, `2ba`, `etim` or `general`. |
 | `publishedAt` | yes | ISO 8601 UTC. |
 | `revision` | yes | Integer, see [Revision](#revision). |
-| `releaseNotes` | for `release` and `upcoming` only | See [Release items](#release-items). MUST be absent for other types. |
-| `locales` | for `2ba`, `etim` and `general` only | Map with `en-GB`, `nl-NL`, `de-DE`, `fr-FR`, each `{title, intro, sections}`. MUST be absent for release items. |
+| `releaseNotes` | Required for release items | See [Release items](#release-items). MUST be absent for other announcements. |
+| `locales` | Required for other announcements | Map with `en-GB`, `nl-NL`, `de-DE`, `fr-FR`, each `{title, intro, sections}`. MUST be absent for release items. |
 | `priority` | no | `normal` (default when absent) or `important`. |
 | `url` | no | HTTPS only. |
 | `expiresAt` | no | ISO 8601 UTC, later than `publishedAt`. |
@@ -48,14 +54,14 @@ So the release example below is valid without `priority` and `url`, and the non-
 
 ### Release items
 
-`releaseNotes` preserves the existing Skwirrel release-note file verbatim: `version`, `status`, `released_on`, `icon`, `locales`.
+`releaseNotes` preserves the existing Skwirrel release-note file verbatim: `version` and `status` (required), `released_on` (see below), `icon` (optional, a Phosphor icon class; readers fall back to a default icon) and `locales` (required). Every release-note file that Skwirrel ships today MUST pass the v2 validator unchanged.
 
 `type` and `releaseNotes.status` MUST agree. The validator rejects any other pairing:
 
 | `type` | `releaseNotes.status` | `releaseNotes.released_on` |
 |---|---|---|
-| `upcoming` | `upcoming` | MUST be absent |
-| `release` | `released` | Required, `YYYY-MM-DD` |
+| `upcoming` | `upcoming` | SHOULD be absent. Readers ignore it. |
+| `release` | `released` | Required, `YYYY-MM-DD`, and a real calendar date (`2026-02-30` is rejected) |
 
 When a release ships, `type`, `status` and `released_on` change in the same commit, and `revision` is bumped.
 
@@ -64,15 +70,18 @@ When a release ships, `type`, `status` and `released_on` change in the same comm
 `revision` drives the unread indicator, so producers MUST manage it as follows:
 
 - A new item starts at `1`.
-- Any change a reader can see MUST increase it by exactly 1: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on`, `releaseNotes.version`, `priority` or `url`. This includes correcting a typo, so readers see corrections.
-- Changes a reader cannot see MAY keep it: `expiresAt`, `icon`, key order or whitespace.
+- Any change to content a reader sees MUST make it greater than the value on `main`: text in any locale (`title`, `intro`, `sections`), `type`, `releaseNotes.status`, `releaseNotes.released_on`, `releaseNotes.version`, `releaseNotes.icon`, `priority` or `url`. This includes correcting a typo, so readers see corrections. Bumping by 1 per PR is the convention, however many edits the PR holds.
+- `expiresAt` changes when an item is shown, not what it says, so it MAY keep the revision: extending or shortening an item's life does not mark it unread again.
+- Key order and whitespace MAY keep it.
 - It MUST never decrease and MUST never be reset.
 
-The v2 validator compares each item against the same `id` on `main`: if a visible field changed and `revision` did not increase, the check fails. Clients treat an item as unread when the pair (`id`, `revision`) has not been seen.
+The v2 validator compares each item against the same `id` on `main`: if a content field above changed and `revision` is not greater, the check fails. An item that is new on the branch MUST start at `1`. Removing an item needs no revision. Reader: treat an item as unread when the pair (`id`, `revision`) has not been seen.
 
 ### Sections
 
-Both `releaseNotes.locales.*.sections` and `locales.*.sections` are arrays of section objects. This is the shape of the existing release notes (`docs/release-notes.md` in `skwirrel-2.0`); this document is the canonical copy for the feed, and the two MUST be changed together.
+Both `releaseNotes.locales.*.sections` and `locales.*.sections` are arrays of section objects. An empty array is allowed.
+
+**This section is the single source of truth for section shapes**, for the feed and for the release-note files bundled with Skwirrel. It describes the shape those files already have, plus the `general` kind for other announcements. The Skwirrel documentation links here instead of keeping its own copy. A change to these shapes is a change to this contract: additive within `schemaVersion: 2`, otherwise a new schema version.
 
 Every section has `kind` and `heading` (a non-empty string in the locale's language). The other fields depend on `kind`:
 
@@ -84,18 +93,23 @@ Every section has `kind` and `heading` (a non-empty string in the locale's langu
 | `integrators` | release items | `text` (required), `table` (required) |
 | `general` | other announcements | `text` and/or `items`, at least one |
 
-Release items use the kinds in the order listed and at most once each. Other announcements normally have one `general` section.
+Producer: release items SHOULD use the kinds in the order listed, each at most once; the validator warns but does not fail. Other announcements normally have one `general` section.
+
+Unknown kinds and fields:
+
+- Producer: the validator rejects a `kind` not in this table, and a field not listed for its kind. A new kind is added here first, in the same PR that first uses it.
+- Reader: MUST render a section with an unknown `kind` generically (its `heading`, `text`, `items`, `groups` and `table`, where present) instead of dropping it, and ignore unknown fields. That keeps adding a kind non-breaking for apps already in the field.
 
 Building blocks:
 
-- **item**: a non-empty string, or `{"title": "Bold lead.", "text": "The rest."}` with both strings non-empty.
+- **item**: a non-empty string, or `{"title": "Bold lead.", "text": "The rest."}`. In the object form either string may be empty (a lead-only or text-only item), but not both.
 - **group**: `{"title": string, "text"?: string, "items"?: item[]}`. At least one of `text` or `items`.
 - **table**: `{"columns": string[], "rows": string[][]}`. Every row has exactly as many cells as `columns`.
 - `items`, `groups`, `columns` and `rows` MUST be non-empty arrays when present.
 
-Every text field supports only inline markup: `` `code` ``, `**bold**` and `*italic*`. Readers MUST escape everything else, so HTML is shown as typed. The validator rejects HTML tags.
+Every text field supports only inline markup: `` `code` ``, `**bold**` and `*italic*`. Reader: MUST escape everything else, so HTML is shown as typed. Producer: the validator rejects HTML tags outside `` `code` `` spans, as a second line of defence.
 
-Locale parity: every locale MUST have the same sections in the same order, with the same `kind`s, the same number of groups, items, columns and rows as `en-GB`.
+Locale parity: every locale MUST have the same sections in the same order, with the same `kind`s, the same number of groups, items, columns and rows as `en-GB`. This matches the parity check Skwirrel already runs on its bundled files, plus columns.
 
 Example `new` section:
 
@@ -119,12 +133,12 @@ Example release item:
 
 ```json
 {
-  "id": "release-2.4.0",
+  "id": "release-9.9.0",
   "type": "upcoming",
   "publishedAt": "2026-10-12T10:00:00Z",
   "revision": 1,
   "releaseNotes": {
-    "version": "2.4.0",
+    "version": "9.9.0",
     "status": "upcoming",
     "icon": "ph-sparkle",
     "locales": {

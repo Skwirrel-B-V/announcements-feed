@@ -260,12 +260,24 @@ function content(item) {
 }
 
 function compareWithBase(feed, ref) {
-	let text;
+	const git = (...args) => execFileSync('git', args, {encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']});
 	try {
-		text = execFileSync('git', ['show', `${ref}:${FEED}`], {encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']});
+		git('rev-parse', '--verify', '--quiet', `${ref}^{commit}`);
 	} catch {
+		return error(FEED, `cannot read the comparison ref ${ref}; fetch it first`);
+	}
+	let text = null;
+	let exists = true;
+	try {
+		git('cat-file', '-e', `${ref}:${FEED}`);
+	} catch {
+		exists = false;
+	}
+	if (exists) {
+		text = git('show', `${ref}:${FEED}`);
+	} else {
+		// Only a valid commit without the file is a first publication
 		console.log(`No ${FEED} on ${ref}: every item counts as new`);
-		text = null;
 	}
 	const base = null === text ? null : JSON.parse(text);
 	const baseItems = new Map((base?.announcements ?? []).map((item) => [item.id, item]));
@@ -316,7 +328,8 @@ function validateFeed(ref) {
 		if (!Number.isInteger(item.revision) || item.revision < 1 || item.revision > MAX_REVISION) error(at, 'revision must be an integer from 1');
 		if ('priority' in item && !['normal', 'important'].includes(item.priority)) error(at, 'priority must be normal or important');
 		if ('url' in item) {
-			try { if ('https:' !== new URL(item.url).protocol) error(at, 'url must be HTTPS'); } catch { error(at, 'url is not a URL'); }
+			if (!isString(item.url)) error(at, 'url must be a string');
+			else try { if ('https:' !== new URL(item.url).protocol) error(at, 'url must be HTTPS'); } catch { error(at, 'url is not a URL'); }
 		}
 		if ('expiresAt' in item) {
 			const expires = timestamp(item.expiresAt, at + ' expiresAt');

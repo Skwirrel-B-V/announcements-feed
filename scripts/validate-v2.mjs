@@ -53,7 +53,11 @@ function findDuplicateKeys(text) {
 	const readString = () => {
 		const start = i++;
 		while (i < text.length && '"' !== text[i]) i += '\\' === text[i] ? 2 : 1;
-		return JSON.parse(text.slice(start, ++i));
+		try {
+			return JSON.parse(text.slice(start, ++i));
+		} catch {
+			return text.slice(start, i); // an invalid string; JSON.parse in readJson reports it
+		}
 	};
 	while (i < text.length) {
 		const c = text[i];
@@ -279,7 +283,14 @@ function compareWithBase(feed, ref) {
 		// Only a valid commit without the file is a first publication
 		console.log(`No ${FEED} on ${ref}: every item counts as new`);
 	}
-	const base = null === text ? null : JSON.parse(text);
+	let base = null;
+	if (null !== text) {
+		try {
+			base = JSON.parse(text);
+		} catch (e) {
+			return error(FEED, `${FEED} on ${ref} is not valid JSON: ${e.message}`);
+		}
+	}
 	const baseItems = new Map((base?.announcements ?? []).map((item) => [item.id, item]));
 	const changed = null === base || JSON.stringify(canonical(base)) !== JSON.stringify(canonical(feed));
 
@@ -359,6 +370,10 @@ function validateFeed(ref) {
 // ---------------------------------------------------------------- bare files
 
 function validateBare(target) {
+	if (!fs.existsSync(target)) {
+		error(target, 'no such file or directory');
+		return 0;
+	}
 	const files = fs.statSync(target).isDirectory()
 		? fs.readdirSync(target).filter((f) => f.endsWith('.json')).sort().map((f) => path.join(target, f))
 		: [target];
@@ -374,7 +389,17 @@ function validateBare(target) {
 // ---------------------------------------------------------------- main
 
 const args = process.argv.slice(2);
-const option = (name) => { const i = args.indexOf(name); return -1 === i ? null : (args[i + 1] ?? ''); };
+const option = (name) => {
+	const i = args.indexOf(name);
+	if (-1 === i) return null;
+	const value = args[i + 1];
+	// A missing value must never quietly skip a check
+	if (undefined === value || '' === value || value.startsWith('--')) {
+		console.error(`error: ${name} needs a value`);
+		process.exit(1);
+	}
+	return value;
+};
 const bare = option('--bare');
 const count = null !== bare ? validateBare(bare) : validateFeed(option('--base'));
 

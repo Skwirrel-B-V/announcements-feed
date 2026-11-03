@@ -11,7 +11,7 @@ Central, version-controlled customer announcements for Skwirrel. `feed-v2.json` 
 
 ## Publishing
 
-Edit `feed.json` in a pull request. The validation workflow checks the schema before publication. GitHub Pages publishes the root directory from `main` after Pages is enabled in repository Settings > Pages (Deploy from a branch, `main`, `/ (root)`).
+Release notes go in `feed-v2.json`, other v1 announcements in `feed.json`, always through a pull request. The steps, including the `revision` rules for `feed-v2.json`, are under "Publishing release notes" in [CLAUDE.md](CLAUDE.md). The validation workflow checks both files before publication. GitHub Pages publishes the root directory from `main` after Pages is enabled in repository Settings > Pages (Deploy from a branch, `main`, `/ (root)`).
 
 ## v1 announcement format (feed.json)
 

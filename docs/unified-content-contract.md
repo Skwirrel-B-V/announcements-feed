@@ -223,7 +223,7 @@ These are illustrative only. Do not publish examples as customer news.
 
 These steps are a plan, not feed rules. Where a step states a rule, it is labelled; steps 4 to 6 bind the reader.
 
-Status: steps 1 to 3 are done in this repo, except the branch protection on `main` (a repository setting). Steps 4 to 6 ship with Skwirrel 2.4.0. Step 7 is open: Skwirrel still bundles `2.2.0.json` and `2.3.0.json` as its offline fallback.
+Status: steps 1 and 3 are done in this repo. Step 2 is done except two points: the branch protection on `main` (a repository setting), and running the bare-file mode in Skwirrel CI. Steps 4 to 6 ship with Skwirrel 2.4.0, once its reader PRs are merged. Step 7 is open: Skwirrel still bundles `2.2.0.json` and `2.3.0.json` as its offline fallback.
 
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.

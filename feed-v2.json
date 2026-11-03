@@ -13,8 +13,8 @@
         "icon": "ph-rocket-launch",
         "locales": {
           "en-GB": {
-            "title": "A new Data Dashboard, NOT and Empty filters, and prices with Seymour",
-            "intro": "Skwirrel 2.4.0 brings a redesigned Data Dashboard, **NOT** and **Empty** in almost every product filter, and supplier prices prepared with Seymour. It also adds a profile page and makes the new product list quicker to work with.",
+            "title": "A new Data Dashboard, smarter filters and prices with Seymour",
+            "intro": "Skwirrel 2.4.0 brings a redesigned Data Dashboard, **Is not** and **Empty** in almost every product filter, and supplier prices prepared with Seymour. It also adds a profile page and makes the new product list quicker to work with.",
             "sections": [
               {
                 "kind": "new",
@@ -33,7 +33,7 @@
                     "title": "Product filters",
                     "items": [
                       {
-                        "title": "NOT.",
+                        "title": "Is not.",
                         "text": "Find the products that do not match, for example everything except one manufacturer."
                       },
                       {
@@ -92,8 +92,8 @@
             ]
           },
           "nl-NL": {
-            "title": "Een nieuw Data Dashboard, filters met NIET en Leeg, en prijzen met Seymour",
-            "intro": "Skwirrel 2.4.0 brengt een vernieuwd Data Dashboard, **NIET** en **Leeg** in bijna elk productfilter, en leveranciersprijzen die Seymour voor je klaarzet. Daarnaast komt er een profielpagina en werk je sneller in de nieuwe productlijst.",
+            "title": "Een nieuw Data Dashboard, slimmere filters en prijzen met Seymour",
+            "intro": "Skwirrel 2.4.0 brengt een vernieuwd Data Dashboard, **Is niet** en **Leeg** in bijna elk productfilter, en leveranciersprijzen die Seymour voor je klaarzet. Daarnaast komt er een profielpagina en werk je sneller in de nieuwe productlijst.",
             "sections": [
               {
                 "kind": "new",
@@ -112,7 +112,7 @@
                     "title": "Productfilters",
                     "items": [
                       {
-                        "title": "NIET.",
+                        "title": "Is niet.",
                         "text": "Vind de producten die niet voldoen, bijvoorbeeld alles behalve één fabrikant."
                       },
                       {
@@ -171,8 +171,8 @@
             ]
           },
           "de-DE": {
-            "title": "Ein neues Data Dashboard, Filter mit NICHT und Leer, und Preise mit Seymour",
-            "intro": "Skwirrel 2.4.0 bringt ein neu gestaltetes Data Dashboard, **NICHT** und **Leer** in fast jedem Produktfilter und Lieferantenpreise, die Seymour für Sie vorbereitet. Außerdem gibt es eine Profilseite, und in der neuen Produktliste arbeiten Sie schneller.",
+            "title": "Ein neues Data Dashboard, intelligentere Filter und Preise mit Seymour",
+            "intro": "Skwirrel 2.4.0 bringt ein neu gestaltetes Data Dashboard, **Ist nicht** und **Leer** in fast jedem Produktfilter und Lieferantenpreise, die Seymour für Sie vorbereitet. Außerdem gibt es eine Profilseite, und in der neuen Produktliste arbeiten Sie schneller.",
             "sections": [
               {
                 "kind": "new",
@@ -191,7 +191,7 @@
                     "title": "Produktfilter",
                     "items": [
                       {
-                        "title": "NICHT.",
+                        "title": "Ist nicht.",
                         "text": "Finden Sie die Produkte, die nicht passen, zum Beispiel alles außer einem Hersteller."
                       },
                       {
@@ -206,7 +206,7 @@
                     "text": "Wo Seymour eingeschaltet ist.",
                     "items": [
                       "Seymour liest eine Preisdatei Ihres Lieferanten und ordnet sie Ihren Produkten zu.",
-                      "Prüfen Sie die vorbereiteten Preise auf einer Vorschauseite und verwenden Sie dann **Zu Änderungen hinzufügen** oder aktualisieren Sie sie direkt, mit Rückgängig.",
+                      "Prüfen Sie die vorbereiteten Preise auf einer Vorschauseite und verwenden Sie dann **Zu den Änderungen hinzufügen** oder aktualisieren Sie sie direkt, mit Rückgängig.",
                       "Offene Vorbereitungen stehen unter Preislisten."
                     ]
                   },
@@ -214,7 +214,7 @@
                     "title": "Neue Produktliste",
                     "items": [
                       "Bearbeiten Sie die ETIM-Klasse und eigene Klassen in einem Seitenbereich, direkt aus der Liste.",
-                      "Spaltenköpfe und die Seitenleiste bleiben beim Scrollen sichtbar.",
+                      "Spaltenköpfe und die Seitennavigation bleiben beim Scrollen sichtbar.",
                       "Wechseln Sie mit Tab und Umschalt+Tab zwischen bearbeitbaren Zellen und wählen Sie mit Umschalt+Klick einen Bereich von Zeilen aus.",
                       "Sortieren Sie nach der Kurzbeschreibung."
                     ]
@@ -250,8 +250,8 @@
             ]
           },
           "fr-FR": {
-            "title": "Un nouveau Data Dashboard, des filtres NON et Vide, et les prix avec Seymour",
-            "intro": "Skwirrel 2.4.0 apporte un Data Dashboard repensé, **NON** et **Vide** dans presque tous les filtres de produits, et des prix fournisseurs préparés par Seymour. La version ajoute aussi une page de profil et rend la nouvelle liste de produits plus rapide à utiliser.",
+            "title": "Un nouveau Data Dashboard, des filtres plus malins et les prix avec Seymour",
+            "intro": "Skwirrel 2.4.0 apporte un Data Dashboard repensé, **N'est pas** et **Vide** dans presque tous les filtres de produits, et des prix fournisseurs préparés par Seymour. La version ajoute aussi une page de profil et rend la nouvelle liste de produits plus rapide à utiliser.",
             "sections": [
               {
                 "kind": "new",
@@ -270,7 +270,7 @@
                     "title": "Filtres de produits",
                     "items": [
                       {
-                        "title": "NON.",
+                        "title": "N'est pas.",
                         "text": "Trouvez les produits qui ne correspondent pas, par exemple tout sauf un fabricant."
                       },
                       {
@@ -325,6 +325,72 @@
                     ]
                   ]
                 }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.3.3",
+      "type": "release",
+      "publishedAt": "2026-11-02T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.3.3",
+        "status": "released",
+        "released_on": "2026-11-02",
+        "icon": "ph-hard-drives",
+        "locales": {
+          "en-GB": {
+            "title": "Server update",
+            "intro": "Skwirrel 2.3.3 updates the server software. Nothing changes in how you work.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "The server software is updated to its latest version."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Serverupdate",
+            "intro": "Skwirrel 2.3.3 werkt de serversoftware bij. Er verandert niets aan hoe je werkt.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "De serversoftware is bijgewerkt naar de nieuwste versie."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Serverupdate",
+            "intro": "Skwirrel 2.3.3 aktualisiert die Serversoftware. An Ihrer Arbeitsweise ändert sich nichts.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Die Serversoftware ist auf die neueste Version aktualisiert."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Mise à jour du serveur",
+            "intro": "Skwirrel 2.3.3 met à jour le logiciel serveur. Rien ne change dans votre façon de travailler.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "Le logiciel serveur est mis à jour vers sa dernière version."
+                ]
               }
             ]
           }
@@ -1301,7 +1367,7 @@
                   {
                     "title": "Handelsartikel",
                     "items": [
-                      "Add-ons können dem Handelsartikelformular Felder hinzufügen. Änderungen an diesen Feldern können wie Produktfelder über **Zu Änderungen hinzufügen**, Prüfung und Freigabe laufen."
+                      "Add-ons können dem Handelsartikelformular Felder hinzufügen. Änderungen an diesen Feldern können wie Produktfelder über **Zu den Änderungen hinzufügen**, Prüfung und Freigabe laufen."
                     ]
                   }
                 ]

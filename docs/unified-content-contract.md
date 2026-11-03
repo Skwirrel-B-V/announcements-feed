@@ -10,7 +10,7 @@ The existing feed instead uses `en`, `nl`, `de`, `fr` and a single Markdown `bod
 
 The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who it binds:
 
-- **Producer** rules apply to the feed content. The v2 validator, to be added by step 2 of the plan below, will enforce them on every PR. Until then, `scripts/validate.mjs` checks only the v1 `feed.json`.
+- **Producer** rules apply to the feed content. `scripts/validate-v2.mjs` enforces them on every PR and on every push to `main`; `scripts/validate.mjs` keeps checking the v1 `feed.json`.
 - **Reader** rules apply to the Skwirrel app that consumes the feed. The validator cannot see them; the reader's own tests cover them.
 - **Reviewer** rules need history or judgement the validator does not have. The PR reviewer checks them.
 
@@ -222,6 +222,8 @@ These are illustrative only. Do not publish examples as customer news.
 ## Migration and application integration
 
 These steps are a plan, not feed rules. Where a step states a rule, it is labelled; steps 4 to 6 bind the reader.
+
+Status: steps 1 to 3 are done in this repo, except the branch protection on `main` (a repository setting). Steps 4 to 6 ship with Skwirrel 2.4.0. Step 7 is open: Skwirrel still bundles `2.2.0.json` and `2.3.0.json` as its offline fallback.
 
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.

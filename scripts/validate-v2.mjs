@@ -389,6 +389,13 @@ function validateBare(target) {
 // ---------------------------------------------------------------- main
 
 const args = process.argv.slice(2);
+// Anything but --base <ref> and --bare <path> is a typo that would quietly skip a check
+for (let i = 0; i < args.length; i += 2) {
+	if (!['--base', '--bare'].includes(args[i])) {
+		console.error(`error: unknown argument ${args[i]}; use --base <ref> or --bare <path>`);
+		process.exit(1);
+	}
+}
 const option = (name) => {
 	const i = args.indexOf(name);
 	if (-1 === i) return null;

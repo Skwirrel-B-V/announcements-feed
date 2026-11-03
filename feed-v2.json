@@ -13,7 +13,7 @@
         "icon": "ph-rocket-launch",
         "locales": {
           "en-GB": {
-            "title": "A new Data Dashboard, smarter filters and prices with Seymour",
+            "title": "A new Data Dashboard, smarter filters, and prices with Seymour",
             "intro": "Skwirrel 2.4.0 brings a redesigned Data Dashboard, **Is not** and **Empty** in almost every product filter, and supplier prices prepared with Seymour. It also adds a profile page and makes the new product list quicker to work with.",
             "sections": [
               {
@@ -250,7 +250,7 @@
             ]
           },
           "fr-FR": {
-            "title": "Un nouveau Data Dashboard, des filtres plus malins et les prix avec Seymour",
+            "title": "Un nouveau Data Dashboard, des filtres plus intelligents, et les prix avec Seymour",
             "intro": "Skwirrel 2.4.0 apporte un Data Dashboard repensé, **N'est pas** et **Vide** dans presque tous les filtres de produits, et des prix fournisseurs préparés par Seymour. La version ajoute aussi une page de profil et rend la nouvelle liste de produits plus rapide à utiliser.",
             "sections": [
               {

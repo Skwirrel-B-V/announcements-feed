@@ -173,7 +173,7 @@ Definitions, so every implementation agrees:
 - **Bold** and **italic**: split the text on code spans, then apply bold and then italic to each remaining piece separately, with `.` matching newlines. Markup never spans a code span. The patterns are exactly: bold `\*\*(.+?)\*\*`, then italic `(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])`. Any `*` left over is shown as typed. These are the patterns Skwirrel's reader uses today; a reader in another language MUST produce the same result.
 - A **link** is a match of `](` outside a code span. v2 has no inline links, unlike the v1 `body`: an item links out through its `url` field.
 
-Producer: the validator rejects HTML tags and links in every text field, and warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed. These markup rules are producer-only: a reader never skips an item for its markup, it escapes it.
+Producer: the validator rejects HTML tags and links in every text field. It also rejects control, zero-width and bidi characters there (U+0000–U+0009, U+000B–U+001F, U+007F, U+061C, U+180E, U+200B–U+200F, U+2028–U+2029, U+202A–U+202E, U+2060, U+2066–U+2069, U+FEFF), because they make text read differently than it is; a newline (U+000A) is allowed. It warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed. These markup rules are producer-only: a reader never skips an item for its markup, it escapes it.
 
 ### Examples
 

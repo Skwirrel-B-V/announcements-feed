@@ -114,7 +114,7 @@ function timestamp(value, at) {
 const CODE_SPAN = /`[^`]+`/g;
 
 // Control, zero-width and bidi characters can make text read differently than it is
-const HIDDEN_CHARS = /[\u0000-\u0009\u000B-\u001F\u007F\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/;
+const HIDDEN_CHARS = /[\u0000-\u0009\u000B-\u001F\u007F\u200B-\u200F\u202A-\u202E\u2028\u2029\u2060\u2066-\u2069\u061C\u180E\uFEFF]/;
 
 function inlineText(value, at) {
 	if (HIDDEN_CHARS.test(value)) error(at, 'control, zero-width or bidi characters are not allowed');

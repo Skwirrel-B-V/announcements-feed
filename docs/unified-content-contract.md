@@ -10,7 +10,7 @@ The existing feed instead uses `en`, `nl`, `de`, `fr` and a single Markdown `bod
 
 The key words MUST, MUST NOT, SHOULD and MAY are normative. Each rule names who it binds:
 
-- **Producer** rules apply to the feed content. The v2 validator, to be added by step 2 of the plan below, will enforce them on every PR. Until then, `scripts/validate.mjs` checks only the v1 `feed.json`.
+- **Producer** rules apply to the feed content. `scripts/validate-v2.mjs` enforces them on every PR and on every push to `main`; `scripts/validate.mjs` keeps checking the v1 `feed.json`.
 - **Reader** rules apply to the Skwirrel app that consumes the feed. The validator cannot see them; the reader's own tests cover them.
 - **Reviewer** rules need history or judgement the validator does not have. The PR reviewer checks them.
 
@@ -173,7 +173,7 @@ Definitions, so every implementation agrees:
 - **Bold** and **italic**: split the text on code spans, then apply bold and then italic to each remaining piece separately, with `.` matching newlines. Markup never spans a code span. The patterns are exactly: bold `\*\*(.+?)\*\*`, then italic `(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])`. Any `*` left over is shown as typed. These are the patterns Skwirrel's reader uses today; a reader in another language MUST produce the same result.
 - A **link** is a match of `](` outside a code span. v2 has no inline links, unlike the v1 `body`: an item links out through its `url` field.
 
-Producer: the validator rejects HTML tags and links in every text field, and warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed. These markup rules are producer-only: a reader never skips an item for its markup, it escapes it.
+Producer: the validator rejects HTML tags and links in every text field. It also rejects control, zero-width and bidi characters there (U+0000–U+0009, U+000B–U+001F, U+007F, U+061C, U+180E, U+200B–U+200F, U+2028–U+2029, U+202A–U+202E, U+2060, U+2066–U+2069, U+FEFF), because they make text read differently than it is; a newline (U+000A) is allowed. It warns on `` ` `` or `*` in a plain-text field. Reader: MUST escape everything it does not render as markup, so HTML is shown as typed. These markup rules are producer-only: a reader never skips an item for its markup, it escapes it.
 
 ### Examples
 
@@ -222,6 +222,8 @@ These are illustrative only. Do not publish examples as customer news.
 ## Migration and application integration
 
 These steps are a plan, not feed rules. Where a step states a rule, it is labelled; steps 4 to 6 bind the reader.
+
+Status: steps 1 and 3 are done in this repo. Step 2 is done except two points: the branch protection on `main` (a repository setting), and running the bare-file mode in Skwirrel CI. Steps 4 to 6 ship with Skwirrel 2.4.0, once its reader PRs are merged. Step 7 is open: Skwirrel still bundles `2.2.0.json` and `2.3.0.json` as its offline fallback.
 
 1. Keep the published `feed.json` v1 contract working until the v2 validator and reader are ready. Never break existing clients by replacing it without a coordinated release.
 2. Add the v2 validator for every producer rule above, including the bare-file mode for bundled release notes, the `origin/main` fetch in CI and branch protection on `main`. Run the bare-file mode in Skwirrel CI.

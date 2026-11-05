@@ -3,14 +3,41 @@ on:
   pull_request:
   push:
     branches: [main]
+permissions:
+  contents: read
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
       - run: node scripts/validate.mjs
+      # The v2 check compares revisions with what is published. The default
+      # checkout has depth 1, so fetch the comparison point explicitly: main
+      # for a pull request, the state of main before the push otherwise.
+      - name: Fetch the published feed to compare with
+        id: base
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$EVENT" = "pull_request" ]; then
+            git fetch --no-tags --depth=1 origin main
+            echo "ref=origin/main" >> "$GITHUB_OUTPUT"
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            git fetch --no-tags --depth=1 origin "$BEFORE"
+            echo "ref=$BEFORE" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Validate feed-v2.json
+        env:
+          BASE: ${{ steps.base.outputs.ref }}
+        run: |
+          if [ -n "$BASE" ]; then
+            node scripts/validate-v2.mjs --base "$BASE"
+          else
+            node scripts/validate-v2.mjs
+          fi
       - name: AGENTS.md mirrors CLAUDE.md
         run: cmp CLAUDE.md AGENTS.md

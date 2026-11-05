@@ -1,0 +1,2271 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-11-03T00:00:00Z",
+  "announcements": [
+    {
+      "id": "release-2.4.0",
+      "type": "upcoming",
+      "publishedAt": "2026-11-03T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.4.0",
+        "status": "upcoming",
+        "icon": "ph-rocket-launch",
+        "locales": {
+          "en-GB": {
+            "title": "A new Data Dashboard, smarter filters, and prices with Seymour",
+            "intro": "Skwirrel 2.4.0 brings a redesigned Data Dashboard, **Is not** and **Empty** in almost every product filter, and supplier prices prepared with Seymour. It also adds a profile page and makes the new product list quicker to work with.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Data Dashboard",
+                    "text": "The dashboard is redesigned and gets a page of its own. Old links keep working.",
+                    "items": [
+                      "See product health, what is ready for 2BA and the most critical issues at a glance.",
+                      "Cards show missing translations, expiring prices, ETIM changes and what ran last night.",
+                      "Your own blocks are on the dashboard as well."
+                    ]
+                  },
+                  {
+                    "title": "Product filters",
+                    "items": [
+                      {
+                        "title": "Is not.",
+                        "text": "Find the products that do not match, for example everything except one manufacturer."
+                      },
+                      {
+                        "title": "Empty.",
+                        "text": "Find the products where a value is missing."
+                      },
+                      "Both work for search, codes, issues, supplier, manufacturer, brand, groups, categories, selections, the ETIM class and features, and custom classes."
+                    ]
+                  },
+                  {
+                    "title": "Prices with Seymour",
+                    "text": "Where Seymour is switched on.",
+                    "items": [
+                      "Seymour reads a price file from your supplier and matches it to your products.",
+                      "Check the prepared prices on a preview page, then use **Add to changes** or update them straight away, with Undo.",
+                      "Open preparations are listed under Price lists."
+                    ]
+                  },
+                  {
+                    "title": "New product list",
+                    "items": [
+                      "Edit the ETIM class and custom classes in a side panel, straight from the list.",
+                      "Column headers and the paging bar stay in view while you scroll.",
+                      "Move between editable cells with Tab and Shift+Tab, and select a range of rows with Shift+click.",
+                      "Sort on the short description."
+                    ]
+                  },
+                  {
+                    "title": "Profile and navigation",
+                    "items": [
+                      "A new profile page for your details, extra email addresses and phone numbers, your password, active sessions and preferences.",
+                      "Recently visited pages and recent searches are one click away.",
+                      "Alerts show how important they are, can link to the page they are about, and can be closed.",
+                      "News like this now reaches you live, without waiting for an update."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "For integrators",
+                "text": "For teams that connect to Skwirrel through the Web API.",
+                "table": {
+                  "columns": [
+                    "Area",
+                    "What changes"
+                  ],
+                  "rows": [
+                    [
+                      "Web API v3",
+                      "`rpc.discover` now also describes what each method returns."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Een nieuw Data Dashboard, slimmere filters en prijzen met Seymour",
+            "intro": "Skwirrel 2.4.0 brengt een vernieuwd Data Dashboard, **Is niet** en **Leeg** in bijna elk productfilter, en leveranciersprijzen die Seymour voor je klaarzet. Daarnaast komt er een profielpagina en werk je sneller in de nieuwe productlijst.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Data Dashboard",
+                    "text": "Het dashboard is vernieuwd en krijgt een eigen pagina. Oude links blijven werken.",
+                    "items": [
+                      "Zie in één oogopslag de gezondheid van je producten, wat klaar is voor 2BA en de meest kritieke issues.",
+                      "Kaarten tonen ontbrekende vertalingen, verlopende prijzen, ETIM-wijzigingen en wat er vannacht is gedraaid.",
+                      "Je eigen blokken staan ook op het dashboard."
+                    ]
+                  },
+                  {
+                    "title": "Productfilters",
+                    "items": [
+                      {
+                        "title": "Is niet.",
+                        "text": "Vind de producten die niet voldoen, bijvoorbeeld alles behalve één fabrikant."
+                      },
+                      {
+                        "title": "Leeg.",
+                        "text": "Vind de producten waarbij een waarde ontbreekt."
+                      },
+                      "Beide werken voor zoeken, codes, issues, leverancier, fabrikant, merk, groepen, categorieën, selecties, de ETIM-klasse en -kenmerken, en eigen klassen."
+                    ]
+                  },
+                  {
+                    "title": "Prijzen met Seymour",
+                    "text": "Waar Seymour aan staat.",
+                    "items": [
+                      "Seymour leest een prijsbestand van je leverancier en koppelt het aan je producten.",
+                      "Controleer de klaargezette prijzen op een voorbeeldpagina en gebruik dan **Toevoegen aan wijzigingen** of werk ze direct bij, met Ongedaan maken.",
+                      "Openstaande voorbereidingen staan onder Prijslijsten."
+                    ]
+                  },
+                  {
+                    "title": "Nieuwe productlijst",
+                    "items": [
+                      "Bewerk de ETIM-klasse en eigen klassen in een zijpaneel, direct vanuit de lijst.",
+                      "Kolomkoppen en de paginabalk blijven in beeld terwijl je scrolt.",
+                      "Ga met Tab en Shift+Tab van bewerkbare cel naar cel, en selecteer een reeks rijen met Shift+klik.",
+                      "Sorteer op de korte omschrijving."
+                    ]
+                  },
+                  {
+                    "title": "Profiel en navigatie",
+                    "items": [
+                      "Een nieuwe profielpagina voor je gegevens, extra e-mailadressen en telefoonnummers, je wachtwoord, actieve sessies en voorkeuren.",
+                      "Recent bezochte pagina's en recente zoekopdrachten zijn één klik weg.",
+                      "Meldingen tonen hoe belangrijk ze zijn, kunnen linken naar de pagina waar ze over gaan en kunnen worden gesloten.",
+                      "Nieuws zoals dit bereikt je nu direct, zonder te wachten op een update."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Voor integrators",
+                "text": "Voor teams die via de Web API met Skwirrel koppelen.",
+                "table": {
+                  "columns": [
+                    "Onderdeel",
+                    "Wat verandert er"
+                  ],
+                  "rows": [
+                    [
+                      "Web API v3",
+                      "`rpc.discover` beschrijft nu ook wat elke methode teruggeeft."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Ein neues Data Dashboard, intelligentere Filter und Preise mit Seymour",
+            "intro": "Skwirrel 2.4.0 bringt ein neu gestaltetes Data Dashboard, **Ist nicht** und **Leer** in fast jedem Produktfilter und Lieferantenpreise, die Seymour für Sie vorbereitet. Außerdem gibt es eine Profilseite, und in der neuen Produktliste arbeiten Sie schneller.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Data Dashboard",
+                    "text": "Das Dashboard ist neu gestaltet und bekommt eine eigene Seite. Alte Links funktionieren weiter.",
+                    "items": [
+                      "Sehen Sie auf einen Blick den Zustand Ihrer Produkte, was für 2BA bereit ist und die kritischsten Issues.",
+                      "Karten zeigen fehlende Übersetzungen, ablaufende Preise, ETIM-Änderungen und was letzte Nacht gelaufen ist.",
+                      "Ihre eigenen Blöcke stehen ebenfalls auf dem Dashboard."
+                    ]
+                  },
+                  {
+                    "title": "Produktfilter",
+                    "items": [
+                      {
+                        "title": "Ist nicht.",
+                        "text": "Finden Sie die Produkte, die nicht passen, zum Beispiel alles außer einem Hersteller."
+                      },
+                      {
+                        "title": "Leer.",
+                        "text": "Finden Sie die Produkte, bei denen ein Wert fehlt."
+                      },
+                      "Beides funktioniert für Suche, Codes, Issues, Lieferant, Hersteller, Marke, Gruppen, Kategorien, Auswahlen, die ETIM-Klasse und -Merkmale sowie eigene Klassen."
+                    ]
+                  },
+                  {
+                    "title": "Preise mit Seymour",
+                    "text": "Wo Seymour eingeschaltet ist.",
+                    "items": [
+                      "Seymour liest eine Preisdatei Ihres Lieferanten und ordnet sie Ihren Produkten zu.",
+                      "Prüfen Sie die vorbereiteten Preise auf einer Vorschauseite und verwenden Sie dann **Zu den Änderungen hinzufügen** oder aktualisieren Sie sie direkt, mit Rückgängig.",
+                      "Offene Vorbereitungen stehen unter Preislisten."
+                    ]
+                  },
+                  {
+                    "title": "Neue Produktliste",
+                    "items": [
+                      "Bearbeiten Sie die ETIM-Klasse und eigene Klassen in einem Seitenbereich, direkt aus der Liste.",
+                      "Spaltenköpfe und die Seitennavigation bleiben beim Scrollen sichtbar.",
+                      "Wechseln Sie mit Tab und Umschalt+Tab zwischen bearbeitbaren Zellen und wählen Sie mit Umschalt+Klick einen Bereich von Zeilen aus.",
+                      "Sortieren Sie nach der Kurzbeschreibung."
+                    ]
+                  },
+                  {
+                    "title": "Profil und Navigation",
+                    "items": [
+                      "Eine neue Profilseite für Ihre Daten, weitere E-Mail-Adressen und Telefonnummern, Ihr Passwort, aktive Sitzungen und Einstellungen.",
+                      "Zuletzt besuchte Seiten und letzte Suchen sind einen Klick entfernt.",
+                      "Meldungen zeigen, wie wichtig sie sind, können auf die betreffende Seite verlinken und lassen sich schließen.",
+                      "Neuigkeiten wie diese erreichen Sie jetzt sofort, ohne auf ein Update zu warten."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Für Integratoren",
+                "text": "Für Teams, die Skwirrel über die Web API anbinden.",
+                "table": {
+                  "columns": [
+                    "Bereich",
+                    "Was sich ändert"
+                  ],
+                  "rows": [
+                    [
+                      "Web API v3",
+                      "`rpc.discover` beschreibt jetzt auch, was jede Methode zurückgibt."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Un nouveau Data Dashboard, des filtres plus intelligents et les prix avec Seymour",
+            "intro": "Skwirrel 2.4.0 apporte un Data Dashboard repensé, **N'est pas** et **Vide** dans presque tous les filtres de produits, et des prix fournisseurs préparés par Seymour. La version ajoute aussi une page de profil et rend la nouvelle liste de produits plus rapide à utiliser.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Data Dashboard",
+                    "text": "Le tableau de bord est repensé et dispose de sa propre page. Les anciens liens fonctionnent toujours.",
+                    "items": [
+                      "Voyez d'un coup d'œil la santé de vos produits, ce qui est prêt pour 2BA et les problèmes les plus critiques.",
+                      "Des cartes montrent les traductions manquantes, les prix qui expirent, les changements ETIM et ce qui a tourné la nuit dernière.",
+                      "Vos propres blocs figurent aussi sur le tableau de bord."
+                    ]
+                  },
+                  {
+                    "title": "Filtres de produits",
+                    "items": [
+                      {
+                        "title": "N'est pas.",
+                        "text": "Trouvez les produits qui ne correspondent pas, par exemple tout sauf un fabricant."
+                      },
+                      {
+                        "title": "Vide.",
+                        "text": "Trouvez les produits auxquels il manque une valeur."
+                      },
+                      "Les deux fonctionnent pour la recherche, les codes, les problèmes, le fournisseur, le fabricant, la marque, les groupes, les catégories, les sélections, la classe et les caractéristiques ETIM, et les classes personnalisées."
+                    ]
+                  },
+                  {
+                    "title": "Les prix avec Seymour",
+                    "text": "Là où Seymour est activé.",
+                    "items": [
+                      "Seymour lit un fichier de prix de votre fournisseur et le rapproche de vos produits.",
+                      "Vérifiez les prix préparés sur une page d'aperçu, puis utilisez **Ajouter aux modifications** ou mettez-les à jour directement, avec Annuler.",
+                      "Les préparations en cours figurent sous Listes de prix."
+                    ]
+                  },
+                  {
+                    "title": "Nouvelle liste de produits",
+                    "items": [
+                      "Modifiez la classe ETIM et les classes personnalisées dans un panneau latéral, directement depuis la liste.",
+                      "Les en-têtes de colonnes et la barre de pagination restent visibles pendant le défilement.",
+                      "Passez d'une cellule modifiable à l'autre avec Tab et Maj+Tab, et sélectionnez une plage de lignes avec Maj+clic.",
+                      "Triez sur la description courte."
+                    ]
+                  },
+                  {
+                    "title": "Profil et navigation",
+                    "items": [
+                      "Une nouvelle page de profil pour vos coordonnées, des adresses e-mail et numéros de téléphone supplémentaires, votre mot de passe, vos sessions actives et vos préférences.",
+                      "Les pages récemment visitées et les recherches récentes sont à un clic.",
+                      "Les alertes indiquent leur importance, peuvent renvoyer vers la page concernée et peuvent être fermées.",
+                      "Les nouvelles comme celle-ci vous parviennent désormais en direct, sans attendre une mise à jour."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Pour les intégrateurs",
+                "text": "Pour les équipes qui se connectent à Skwirrel via la Web API.",
+                "table": {
+                  "columns": [
+                    "Domaine",
+                    "Ce qui change"
+                  ],
+                  "rows": [
+                    [
+                      "Web API v3",
+                      "`rpc.discover` décrit désormais aussi ce que renvoie chaque méthode."
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.3.3",
+      "type": "release",
+      "publishedAt": "2026-11-02T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.3.3",
+        "status": "released",
+        "released_on": "2026-11-02",
+        "icon": "ph-hard-drives",
+        "locales": {
+          "en-GB": {
+            "title": "Server update",
+            "intro": "Skwirrel 2.3.3 updates the server software. Nothing changes in how you work.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "The server software is updated to its latest version."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Serverupdate",
+            "intro": "Skwirrel 2.3.3 werkt de serversoftware bij. Er verandert niets aan hoe je werkt.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "De serversoftware is bijgewerkt naar de nieuwste versie."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Serverupdate",
+            "intro": "Skwirrel 2.3.3 aktualisiert die Serversoftware. An Ihrer Arbeitsweise ändert sich nichts.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Die Serversoftware ist auf die neueste Version aktualisiert."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Mise à jour du serveur",
+            "intro": "Skwirrel 2.3.3 met à jour le logiciel serveur. Rien ne change dans votre façon de travailler.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "Le logiciel serveur est mis à jour vers sa dernière version."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.3.2",
+      "type": "release",
+      "publishedAt": "2026-10-28T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.3.2",
+        "status": "released",
+        "released_on": "2026-10-28",
+        "icon": "ph-arrows-clockwise",
+        "locales": {
+          "en-GB": {
+            "title": "No more hard refresh after an update",
+            "intro": "Skwirrel 2.3.2 makes your browser pick up a new release by itself.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "After an update you no longer need a hard refresh: your browser loads the new version by itself.",
+                  "The server no longer shows which software versions it runs."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Geen harde verversing meer na een update",
+            "intro": "Met Skwirrel 2.3.2 laadt je browser een nieuwe release vanzelf.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "Na een update hoef je de pagina niet meer hard te verversen: je browser laadt de nieuwe versie vanzelf.",
+                  "De server toont niet meer welke softwareversies hij draait."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Kein hartes Neuladen mehr nach einem Update",
+            "intro": "Mit Skwirrel 2.3.2 lädt Ihr Browser ein neues Release von selbst.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Nach einem Update müssen Sie die Seite nicht mehr hart neu laden: Ihr Browser lädt die neue Version von selbst.",
+                  "Der Server zeigt nicht mehr, welche Softwareversionen er verwendet."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Plus besoin de forcer l'actualisation après une mise à jour",
+            "intro": "Avec Skwirrel 2.3.2, votre navigateur charge une nouvelle version tout seul.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "Après une mise à jour, vous n'avez plus besoin de forcer l'actualisation : votre navigateur charge la nouvelle version tout seul.",
+                  "Le serveur n'affiche plus les versions des logiciels qu'il utilise."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.3.1",
+      "type": "release",
+      "publishedAt": "2026-10-26T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.3.1",
+        "status": "released",
+        "released_on": "2026-10-26",
+        "icon": "ph-wrench",
+        "locales": {
+          "en-GB": {
+            "title": "Seymour AI with Claude, and locked fields stay locked",
+            "intro": "Skwirrel 2.3.1 lets Seymour AI work with Anthropic Claude as well as OpenAI, and makes fields that an addon locks read-only again.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      "Seymour can now work with Anthropic Claude as well as OpenAI.",
+                      "Your environment can use an AI key that we provide instead of your own. Contact us if you want to switch."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "Fields that an addon locks for your whole environment are read-only again for every user, administrators included, as in Skwirrel 1."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Seymour AI met Claude, en vergrendelde velden blijven vergrendeld",
+            "intro": "Met Skwirrel 2.3.1 werkt Seymour AI naast OpenAI ook met Anthropic Claude, en zijn velden die een addon vergrendelt weer alleen-lezen.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      "Seymour werkt nu naast OpenAI ook met Anthropic Claude.",
+                      "Je omgeving kan een AI-sleutel gebruiken die wij leveren in plaats van je eigen sleutel. Neem contact met ons op als je wilt overstappen."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "Velden die een addon voor je hele omgeving vergrendelt, zijn weer alleen-lezen voor elke gebruiker, ook voor beheerders, zoals in Skwirrel 1."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Seymour AI mit Claude, und gesperrte Felder bleiben gesperrt",
+            "intro": "Mit Skwirrel 2.3.1 arbeitet Seymour AI neben OpenAI auch mit Anthropic Claude, und Felder, die ein Add-on sperrt, sind wieder schreibgeschützt.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      "Seymour arbeitet jetzt neben OpenAI auch mit Anthropic Claude.",
+                      "Ihre Umgebung kann einen KI-Schlüssel verwenden, den wir bereitstellen, statt Ihres eigenen. Kontaktieren Sie uns, wenn Sie wechseln möchten."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Felder, die ein Add-on für Ihre gesamte Umgebung sperrt, sind wieder für jeden Benutzer schreibgeschützt, auch für Administratoren, wie in Skwirrel 1."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Seymour AI avec Claude, et les champs verrouillés le restent",
+            "intro": "Avec Skwirrel 2.3.1, Seymour AI fonctionne aussi avec Anthropic Claude en plus d'OpenAI, et les champs qu'un add-on verrouille sont de nouveau en lecture seule.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      "Seymour fonctionne désormais avec Anthropic Claude en plus d'OpenAI.",
+                      "Votre environnement peut utiliser une clé d'IA que nous fournissons au lieu de la vôtre. Contactez-nous si vous souhaitez changer."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "Les champs qu'un add-on verrouille pour tout votre environnement sont de nouveau en lecture seule pour chaque utilisateur, administrateurs compris, comme dans Skwirrel 1."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.3.0",
+      "type": "release",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.3.0",
+        "status": "released",
+        "released_on": "2026-10-22",
+        "icon": "ph-sparkle",
+        "locales": {
+          "en-GB": {
+            "title": "Seymour AI, ETIM value details and a new product list",
+            "intro": "Skwirrel 2.3.0 brings Seymour AI, free for now and rolled out step by step: contact us to get started. It also adds ETIM value details, ETIM tabs without pop-ups, a translator role that does exactly what it promises, and a new product list you can try right away.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Action needed",
+                "items": [
+                  {
+                    "title": "Do you keep manufacturer value descriptions in the custom class `UDE_VALUE_DETAIL`?",
+                    "text": "That class is no longer exported. Its job is taken over by the new ETIM value details (see below). Move those texts to the value details, or let us know and we will help."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Seymour AI: contact us to get started",
+                    "text": "Seymour, our AI assistant, is free for now. We roll it out step by step: contact us and we switch it on for you.",
+                    "items": [
+                      {
+                        "title": "Knows where you are.",
+                        "text": "Seymour works on the dashboard, the product list and the product page. On the list, its numbers follow your filter; on a product, it knows that product's issues. The conversation carries on when you switch pages."
+                      },
+                      {
+                        "title": "Helps with every data quality issue.",
+                        "text": "For each issue, Seymour explains what is wrong, why it matters and where to fix it."
+                      },
+                      {
+                        "title": "Sits next to your work.",
+                        "text": "Keep the chat as a small window in the corner, or dock it as a column on the side of the screen. The page makes room instead of being covered."
+                      },
+                      {
+                        "title": "Knows your business.",
+                        "text": "Under *Settings → Seymour AI* you can tell Seymour about your company and the systems you connect, such as your ERP."
+                      },
+                      {
+                        "title": "Looks up your products,",
+                        "text": "if you allow it. Seymour counts products by brand, supplier, category, ETIM class or issue, shows up to 10 examples and links to the product list with the same filter. Off by default; Seymour only sees what the user may see."
+                      },
+                      {
+                        "title": "Your conversations stay private.",
+                        "text": "Skwirrel keeps track of how Seymour is used, but doesn't save your questions or Seymour's answers, or who asked. To answer, your question is sent to OpenAI under your own OpenAI account. OpenAI doesn't use it to train its models."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "A new product list, to try now",
+                    "text": "Click *Try the new list* on the product list to switch. Choose your own columns, edit descriptions, statuses, trade items and prices right in the list, act on many products at once, keep a shortlist and follow products. With a 2BA account you also see how ready each product is for 2BA. A short tour shows you around, and *Back to the old list* takes you back whenever you like."
+                  },
+                  {
+                    "title": "ETIM value details",
+                    "text": "Add the manufacturer's own name for an ETIM value, per language: for example \"Polar white\" next to the ETIM value *White*. On the ETIM tab, flip the toggle next to a value to get a text field per language. Value details go along in change requests, imports, exports and the API. When the value changes, its details are cleared."
+                  },
+                  {
+                    "title": "ETIM tabs without pop-ups",
+                    "text": "The *ETIM* and *ETIM modelling* tabs now work like the *Translations* tab. Classifications open as rows on the page, a class or 2BA preview appears in place with *Adopt* and *Cancel*, and you save with the usual buttons."
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  {
+                    "title": "The \"Translations only\" role preset now does what it says.",
+                    "text": "Translators can change only the languages you select; everything else is read-only. You choose whether they save directly or submit their changes for review, and Skwirrel enforces this everywhere, also in batch edits."
+                  },
+                  {
+                    "title": "Clearer role settings.",
+                    "text": "A *Default* level shows what a field inherits, and the catalog preset no longer suggests ETIM rights it does not give."
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "For integrators",
+                "text": "For teams that connect to Skwirrel through the Web API, tabular import and export, or ETIM xChange and INSBOU exports.",
+                "table": {
+                  "columns": [
+                    "Area",
+                    "What changes"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "`saveEtimFeatureValue` accepts `value_details`: a text per language, only together with a value code."
+                    ],
+                    [
+                      "Web API",
+                      "`getProducts` and `getProductsByFilter` return `_value_details` per ETIM feature."
+                    ],
+                    [
+                      "Tabular import and export",
+                      "New type `product_etim_feature_value_details`."
+                    ],
+                    [
+                      "Excel upload and download for add-ons",
+                      "Add-ons can register their own Excel upload and download types with the new `registerTabularTypes` hook. They appear in the existing upload and download screens, with the same permissions, reports and history."
+                    ],
+                    [
+                      "ETIM xChange and INSBOU",
+                      "Exports and imports carry the value details (ETIM xChange 2.0 through the ETIM xChange add-on)."
+                    ],
+                    [
+                      "Custom class `UDE_VALUE_DETAIL`",
+                      "No longer read or exported. Use the value details instead."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Seymour AI, ETIM-waardedetails en een nieuwe productlijst",
+            "intro": "Skwirrel 2.3.0 brengt Seymour AI, voorlopig gratis en stap voor stap uitgerold: neem contact met ons op om te beginnen. Daarnaast komen er ETIM-waardedetails, ETIM-tabs zonder pop-ups, een vertalersrol die precies doet wat hij belooft, en een nieuwe productlijst die je meteen kunt proberen.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Actie nodig",
+                "items": [
+                  {
+                    "title": "Bewaar je waardeomschrijvingen van de fabrikant in de eigen class `UDE_VALUE_DETAIL`?",
+                    "text": "Die class wordt niet meer geëxporteerd. De nieuwe ETIM-waardedetails nemen zijn taak over (zie hieronder). Zet die teksten over naar de waardedetails, of laat het ons weten en we helpen je."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Seymour AI: neem contact op om te beginnen",
+                    "text": "Seymour, onze AI-assistent, is voorlopig gratis. We rollen hem stap voor stap uit: neem contact met ons op en we zetten hem voor je aan.",
+                    "items": [
+                      {
+                        "title": "Weet waar je bent.",
+                        "text": "Seymour werkt op het dashboard, de productlijst en de productpagina. Op de lijst volgen de aantallen je filter; op een product kent Seymour de issues van dat product. Het gesprek loopt door als je van pagina wisselt."
+                      },
+                      {
+                        "title": "Helpt bij elk datakwaliteitsissue.",
+                        "text": "Voor elk issue legt Seymour uit wat er mis is, waarom het ertoe doet en waar je het oplost."
+                      },
+                      {
+                        "title": "Staat naast je werk.",
+                        "text": "Houd de chat als klein venster in de hoek, of zet hem vast als kolom aan de zijkant van het scherm. De pagina maakt ruimte in plaats van te worden afgedekt."
+                      },
+                      {
+                        "title": "Kent je bedrijf.",
+                        "text": "Onder *Instellingen → Seymour AI* vertel je Seymour over je bedrijf en de systemen die je koppelt, zoals je ERP."
+                      },
+                      {
+                        "title": "Zoekt je producten op,",
+                        "text": "als je dat toestaat. Seymour telt producten per merk, leverancier, categorie, ETIM-class of issue, toont tot 10 voorbeelden en linkt naar de productlijst met hetzelfde filter. Staat standaard uit; Seymour ziet alleen wat de gebruiker mag zien."
+                      },
+                      {
+                        "title": "Je gesprekken blijven privé.",
+                        "text": "Skwirrel houdt bij hoe Seymour wordt gebruikt, maar bewaart je vragen en de antwoorden van Seymour niet, en ook niet wie de vraag stelde. Voor een antwoord gaat je vraag naar OpenAI, onder je eigen OpenAI-account. OpenAI gebruikt hem niet om zijn modellen te trainen."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Een nieuwe productlijst, nu te proberen",
+                    "text": "Klik in de productlijst op *Probeer de nieuwe lijst* om over te stappen. Kies je eigen kolommen, bewerk omschrijvingen, statussen, handelsartikelen en prijzen direct in de lijst, voer acties uit op veel producten tegelijk, houd een shortlist bij en volg producten. Met een 2BA-account zie je ook hoe klaar elk product is voor 2BA. Een korte rondleiding laat je de weg zien, en met *Terug naar de oude lijst* ga je terug wanneer je wilt."
+                  },
+                  {
+                    "title": "ETIM-waardedetails",
+                    "text": "Voeg per taal de eigen naam van de fabrikant toe aan een ETIM-waarde: bijvoorbeeld \"Poolwit\" naast de ETIM-waarde *Wit*. Zet op de ETIM-tab de schakelaar naast een waarde om, en je krijgt een tekstveld per taal. Waardedetails gaan mee in wijzigingsverzoeken, imports, exports en de API. Verandert de waarde, dan worden de details gewist."
+                  },
+                  {
+                    "title": "ETIM-tabs zonder pop-ups",
+                    "text": "De tabs *ETIM* en *ETIM-modellering* werken nu zoals de tab *Vertalingen*. Classificaties openen als rijen op de pagina, een class- of 2BA-voorbeeld verschijnt ter plekke met *Overnemen* en *Annuleren*, en je slaat op met de gewone knoppen."
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  {
+                    "title": "Het rolsjabloon \"Alleen vertalingen\" doet nu wat het zegt.",
+                    "text": "Vertalers kunnen alleen de talen wijzigen die jij kiest; al het andere is alleen-lezen. Jij bepaalt of ze direct opslaan of hun wijzigingen ter beoordeling indienen, en Skwirrel dwingt dat overal af, ook bij batchgewijs bewerken."
+                  },
+                  {
+                    "title": "Duidelijkere rolinstellingen.",
+                    "text": "Een niveau *Standaard* toont wat een veld erft, en het catalogussjabloon suggereert geen ETIM-rechten meer die het niet geeft."
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Voor integrators",
+                "text": "Voor teams die via de Web API, tabulaire import en export, of ETIM xChange- en INSBOU-exports met Skwirrel koppelen.",
+                "table": {
+                  "columns": [
+                    "Onderdeel",
+                    "Wat verandert"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "`saveEtimFeatureValue` accepteert `value_details`: een tekst per taal, alleen samen met een waardecode."
+                    ],
+                    [
+                      "Web API",
+                      "`getProducts` en `getProductsByFilter` geven `_value_details` terug per ETIM-kenmerk."
+                    ],
+                    [
+                      "Tabulaire import en export",
+                      "Nieuw type `product_etim_feature_value_details`."
+                    ],
+                    [
+                      "Excel-upload en -download voor add-ons",
+                      "Add-ons kunnen met de nieuwe hook `registerTabularTypes` eigen Excel-upload- en downloadtypes registreren. Ze verschijnen in de bestaande upload- en downloadschermen, met dezelfde rechten, rapporten en historie."
+                    ],
+                    [
+                      "ETIM xChange en INSBOU",
+                      "Exports en imports nemen de waardedetails mee (ETIM xChange 2.0 via de ETIM xChange-add-on)."
+                    ],
+                    [
+                      "Eigen class `UDE_VALUE_DETAIL`",
+                      "Wordt niet meer gelezen of geëxporteerd. Gebruik de waardedetails."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Seymour AI, ETIM-Wertdetails und eine neue Produktliste",
+            "intro": "Skwirrel 2.3.0 bringt Seymour AI, vorerst kostenlos und schrittweise eingeführt: Kontaktieren Sie uns, um loszulegen. Außerdem kommen ETIM-Wertdetails, ETIM-Tabs ohne Pop-ups, eine Übersetzerrolle, die genau das tut, was sie verspricht, und eine neue Produktliste, die Sie gleich ausprobieren können.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Handlungsbedarf",
+                "items": [
+                  {
+                    "title": "Pflegen Sie Wertbeschreibungen des Herstellers in der benutzerdefinierten Klasse `UDE_VALUE_DETAIL`?",
+                    "text": "Diese Klasse wird nicht mehr exportiert. Ihre Aufgabe übernehmen die neuen ETIM-Wertdetails (siehe unten). Übertragen Sie diese Texte in die Wertdetails, oder sagen Sie uns Bescheid, und wir helfen Ihnen."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Seymour AI: Kontaktieren Sie uns, um loszulegen",
+                    "text": "Seymour, unser KI-Assistent, ist vorerst kostenlos. Wir führen ihn schrittweise ein: Kontaktieren Sie uns, und wir schalten ihn für Sie frei.",
+                    "items": [
+                      {
+                        "title": "Weiß, wo Sie sind.",
+                        "text": "Seymour arbeitet auf dem Dashboard, in der Produktliste und auf der Produktseite. In der Liste folgen die Zahlen Ihrem Filter; bei einem Produkt kennt Seymour dessen Issues. Das Gespräch läuft weiter, wenn Sie die Seite wechseln."
+                      },
+                      {
+                        "title": "Hilft bei jedem Datenqualitäts-Issue.",
+                        "text": "Für jedes Issue erklärt Seymour, was falsch ist, warum es wichtig ist und wo Sie es beheben."
+                      },
+                      {
+                        "title": "Sitzt neben Ihrer Arbeit.",
+                        "text": "Behalten Sie den Chat als kleines Fenster in der Ecke, oder docken Sie ihn als Spalte am Bildschirmrand an. Die Seite macht Platz, statt verdeckt zu werden."
+                      },
+                      {
+                        "title": "Kennt Ihr Unternehmen.",
+                        "text": "Unter *Einstellungen → Seymour AI* erzählen Sie Seymour von Ihrem Unternehmen und den Systemen, die Sie anbinden, etwa Ihrem ERP."
+                      },
+                      {
+                        "title": "Schlägt Ihre Produkte nach,",
+                        "text": "wenn Sie es erlauben. Seymour zählt Produkte nach Marke, Lieferant, Kategorie, ETIM-Klasse oder Issue, zeigt bis zu 10 Beispiele und verlinkt auf die Produktliste mit demselben Filter. Standardmäßig aus; Seymour sieht nur, was der Benutzer sehen darf."
+                      },
+                      {
+                        "title": "Ihre Gespräche bleiben privat.",
+                        "text": "Skwirrel erfasst, wie Seymour genutzt wird, speichert aber weder Ihre Fragen noch Seymours Antworten, und auch nicht, wer gefragt hat. Für die Antwort wird Ihre Frage an OpenAI gesendet, unter Ihrem eigenen OpenAI-Konto. OpenAI verwendet sie nicht zum Training seiner Modelle."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Eine neue Produktliste, jetzt zum Ausprobieren",
+                    "text": "Klicken Sie in der Produktliste auf *Neue Liste ausprobieren*, um zu wechseln. Wählen Sie Ihre eigenen Spalten, bearbeiten Sie Beschreibungen, Status, Handelsartikel und Preise direkt in der Liste, führen Sie Aktionen für viele Produkte gleichzeitig aus, führen Sie eine Merkliste und folgen Sie Produkten. Mit einem 2BA-Konto sehen Sie außerdem, wie bereit jedes Produkt für 2BA ist. Eine kurze Tour zeigt Ihnen alles, und mit *Zurück zur alten Liste* wechseln Sie jederzeit zurück."
+                  },
+                  {
+                    "title": "ETIM-Wertdetails",
+                    "text": "Ergänzen Sie pro Sprache den eigenen Namen des Herstellers für einen ETIM-Wert: zum Beispiel „Polarweiß“ neben dem ETIM-Wert *Weiß*. Legen Sie auf dem ETIM-Tab den Schalter neben einem Wert um, und Sie erhalten ein Textfeld pro Sprache. Wertdetails gehen in Änderungswünsche, Importe, Exporte und die API mit. Ändert sich der Wert, werden seine Details gelöscht."
+                  },
+                  {
+                    "title": "ETIM-Tabs ohne Pop-ups",
+                    "text": "Die Tabs *ETIM* und *ETIM-Modellierung* funktionieren jetzt wie der Tab *Übersetzungen*. Klassifizierungen öffnen sich als Zeilen auf der Seite, eine Klassen- oder 2BA-Vorschau erscheint direkt an Ort und Stelle mit *Übernehmen* und *Abbrechen*, und Sie speichern mit den gewohnten Schaltflächen."
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  {
+                    "title": "Die Rollenvorlage „Nur Übersetzungen“ tut jetzt, was sie sagt.",
+                    "text": "Übersetzer können nur die Sprachen ändern, die Sie auswählen; alles andere ist schreibgeschützt. Sie entscheiden, ob sie direkt speichern oder ihre Änderungen zur Prüfung einreichen, und Skwirrel setzt das überall durch, auch in der Stapelbearbeitung."
+                  },
+                  {
+                    "title": "Klarere Rolleneinstellungen.",
+                    "text": "Eine Stufe *Standard* zeigt, was ein Feld erbt, und die Katalogvorlage suggeriert keine ETIM-Rechte mehr, die sie nicht vergibt."
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Für Integratoren",
+                "text": "Für Teams, die Skwirrel über die Web-API, tabellarischen Import und Export oder ETIM-xChange- und INSBOU-Exporte anbinden.",
+                "table": {
+                  "columns": [
+                    "Bereich",
+                    "Was sich ändert"
+                  ],
+                  "rows": [
+                    [
+                      "Web-API",
+                      "`saveEtimFeatureValue` akzeptiert `value_details`: einen Text pro Sprache, nur zusammen mit einem Wertcode."
+                    ],
+                    [
+                      "Web-API",
+                      "`getProducts` und `getProductsByFilter` liefern `_value_details` pro ETIM-Merkmal."
+                    ],
+                    [
+                      "Tabellarischer Import und Export",
+                      "Neuer Typ `product_etim_feature_value_details`."
+                    ],
+                    [
+                      "Excel-Upload und -Download für Add-ons",
+                      "Add-ons können mit dem neuen Hook `registerTabularTypes` eigene Excel-Upload- und Download-Typen registrieren. Sie erscheinen in den bestehenden Upload- und Download-Bildschirmen, mit denselben Berechtigungen, Berichten und demselben Verlauf."
+                    ],
+                    [
+                      "ETIM xChange und INSBOU",
+                      "Exporte und Importe enthalten die Wertdetails (ETIM xChange 2.0 über das ETIM-xChange-Add-on)."
+                    ],
+                    [
+                      "Benutzerdefinierte Klasse `UDE_VALUE_DETAIL`",
+                      "Wird nicht mehr gelesen oder exportiert. Verwenden Sie stattdessen die Wertdetails."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Seymour AI, les détails de valeur ETIM et une nouvelle liste de produits",
+            "intro": "Skwirrel 2.3.0 apporte Seymour AI, gratuit pour l'instant et déployé progressivement : contactez-nous pour commencer. La version apporte aussi les détails de valeur ETIM, des onglets ETIM sans fenêtres contextuelles, un rôle de traducteur qui fait exactement ce qu'il promet, et une nouvelle liste de produits à essayer dès maintenant.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Action requise",
+                "items": [
+                  {
+                    "title": "Conservez-vous les descriptions de valeur du fabricant dans la classe personnalisée `UDE_VALUE_DETAIL` ?",
+                    "text": "Cette classe n'est plus exportée. Son rôle est repris par les nouveaux détails de valeur ETIM (voir ci-dessous). Transférez ces textes vers les détails de valeur, ou prévenez-nous et nous vous aiderons."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Seymour AI : contactez-nous pour commencer",
+                    "text": "Seymour, notre assistant IA, est gratuit pour l'instant. Nous le déployons progressivement : contactez-nous et nous l'activons pour vous.",
+                    "items": [
+                      {
+                        "title": "Sait où vous êtes.",
+                        "text": "Seymour fonctionne sur le tableau de bord, la liste de produits et la page produit. Dans la liste, ses chiffres suivent votre filtre ; sur un produit, il connaît les problèmes de ce produit. La conversation continue quand vous changez de page."
+                      },
+                      {
+                        "title": "Aide pour chaque problème de qualité des données.",
+                        "text": "Pour chaque problème, Seymour explique ce qui ne va pas, pourquoi c'est important et où le corriger."
+                      },
+                      {
+                        "title": "Reste à côté de votre travail.",
+                        "text": "Gardez le chat comme petite fenêtre dans le coin, ou ancrez-le en colonne sur le côté de l'écran. La page fait de la place au lieu d'être masquée."
+                      },
+                      {
+                        "title": "Connaît votre entreprise.",
+                        "text": "Sous *Paramètres → Seymour AI*, vous présentez à Seymour votre entreprise et les systèmes que vous connectez, comme votre ERP."
+                      },
+                      {
+                        "title": "Recherche vos produits,",
+                        "text": "si vous l'y autorisez. Seymour compte les produits par marque, fournisseur, catégorie, classe ETIM ou problème, montre jusqu'à 10 exemples et renvoie vers la liste de produits avec le même filtre. Désactivé par défaut ; Seymour ne voit que ce que l'utilisateur a le droit de voir."
+                      },
+                      {
+                        "title": "Vos conversations restent privées.",
+                        "text": "Skwirrel suit l'utilisation de Seymour, mais ne conserve ni vos questions ni les réponses de Seymour, ni l'identité de qui a posé la question. Pour répondre, votre question est envoyée à OpenAI, sous votre propre compte OpenAI. OpenAI ne l'utilise pas pour entraîner ses modèles."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Une nouvelle liste de produits, à essayer dès maintenant",
+                    "text": "Cliquez sur *Essayer la nouvelle liste* dans la liste de produits pour changer. Choisissez vos propres colonnes, modifiez descriptions, statuts, articles commerciaux et prix directement dans la liste, agissez sur de nombreux produits à la fois, gardez une liste restreinte et suivez des produits. Avec un compte 2BA, vous voyez aussi à quel point chaque produit est prêt pour 2BA. Une courte visite guidée vous montre tout, et *Retour à l'ancienne liste* vous ramène quand vous le souhaitez."
+                  },
+                  {
+                    "title": "Détails de valeur ETIM",
+                    "text": "Ajoutez, par langue, le nom propre du fabricant pour une valeur ETIM : par exemple « Blanc polaire » à côté de la valeur ETIM *Blanc*. Dans l'onglet ETIM, activez l'interrupteur à côté d'une valeur pour obtenir un champ de texte par langue. Les détails de valeur suivent dans les demandes de modification, les imports, les exports et l'API. Quand la valeur change, ses détails sont effacés."
+                  },
+                  {
+                    "title": "Onglets ETIM sans fenêtres contextuelles",
+                    "text": "Les onglets *ETIM* et *Modélisation ETIM* fonctionnent désormais comme l'onglet *Traductions*. Les classifications s'ouvrent en lignes sur la page, un aperçu de classe ou 2BA apparaît sur place avec *Adopter* et *Annuler*, et vous enregistrez avec les boutons habituels."
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  {
+                    "title": "Le modèle de rôle « Traductions uniquement » fait désormais ce qu'il annonce.",
+                    "text": "Les traducteurs ne peuvent modifier que les langues que vous choisissez ; tout le reste est en lecture seule. Vous décidez s'ils enregistrent directement ou soumettent leurs modifications pour validation, et Skwirrel l'applique partout, y compris dans les modifications groupées."
+                  },
+                  {
+                    "title": "Des paramètres de rôle plus clairs.",
+                    "text": "Un niveau *Par défaut* montre ce dont un champ hérite, et le modèle catalogue ne suggère plus de droits ETIM qu'il n'accorde pas."
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Pour les intégrateurs",
+                "text": "Pour les équipes qui se connectent à Skwirrel via la Web API, l'import et l'export tabulaires, ou les exports ETIM xChange et INSBOU.",
+                "table": {
+                  "columns": [
+                    "Domaine",
+                    "Ce qui change"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "`saveEtimFeatureValue` accepte `value_details` : un texte par langue, uniquement avec un code de valeur."
+                    ],
+                    [
+                      "Web API",
+                      "`getProducts` et `getProductsByFilter` renvoient `_value_details` par caractéristique ETIM."
+                    ],
+                    [
+                      "Import et export tabulaires",
+                      "Nouveau type `product_etim_feature_value_details`."
+                    ],
+                    [
+                      "Upload et téléchargement Excel pour les add-ons",
+                      "Les add-ons peuvent enregistrer leurs propres types d'upload et de téléchargement Excel avec le nouveau hook `registerTabularTypes`. Ils apparaissent dans les écrans d'upload et de téléchargement existants, avec les mêmes droits, rapports et historique."
+                    ],
+                    [
+                      "ETIM xChange et INSBOU",
+                      "Les exports et les imports transportent les détails de valeur (ETIM xChange 2.0 via le module ETIM xChange)."
+                    ],
+                    [
+                      "Classe personnalisée `UDE_VALUE_DETAIL`",
+                      "N'est plus lue ni exportée. Utilisez les détails de valeur."
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.5",
+      "type": "release",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.5",
+        "status": "released",
+        "released_on": "2026-10-22",
+        "icon": "ph-wrench",
+        "locales": {
+          "en-GB": {
+            "title": "Easier scrolling in wide lists",
+            "intro": "Skwirrel 2.2.5 makes wide lists easier to use.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "The trade item list no longer makes the whole page wider, so the filters stay in view.",
+                  "In the old product list, the product trash and the trade item list, the row actions stay at the right edge, so you no longer have to scroll sideways to reach them."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Makkelijker scrollen in brede lijsten",
+            "intro": "Skwirrel 2.2.5 maakt brede lijsten makkelijker in gebruik.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "De handelsartikellijst maakt de hele pagina niet meer breder, dus de filters blijven in beeld.",
+                  "In de oude productlijst, de prullenbak voor producten en de handelsartikellijst blijven de rijacties aan de rechterkant staan, zodat je niet meer opzij hoeft te scrollen om ze te bereiken."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Einfacheres Scrollen in breiten Listen",
+            "intro": "Skwirrel 2.2.5 macht breite Listen einfacher zu bedienen.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Die Handelsartikelliste macht nicht mehr die ganze Seite breiter, sodass die Filter sichtbar bleiben.",
+                  "In der alten Produktliste, im Produktpapierkorb und in der Handelsartikelliste bleiben die Zeilenaktionen am rechten Rand, sodass Sie nicht mehr seitlich scrollen müssen, um sie zu erreichen."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Défilement plus simple dans les listes larges",
+            "intro": "Skwirrel 2.2.5 rend les listes larges plus faciles à utiliser.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "La liste des articles commerciaux n'élargit plus toute la page, les filtres restent donc visibles.",
+                  "Dans l'ancienne liste de produits, la corbeille des produits et la liste des articles commerciaux, les actions de ligne restent sur le bord droit : vous n'avez plus à faire défiler latéralement pour les atteindre."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.4",
+      "type": "release",
+      "publishedAt": "2026-10-21T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.4",
+        "status": "released",
+        "released_on": "2026-10-21",
+        "icon": "ph-shield-check",
+        "locales": {
+          "en-GB": {
+            "title": "Security update",
+            "intro": "Skwirrel 2.2.4 is a security update. Nothing changes in how you work.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "Contains the latest security fixes for the server software."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Beveiligingsupdate",
+            "intro": "Skwirrel 2.2.4 is een beveiligingsupdate. Er verandert niets aan hoe je werkt.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "Bevat de nieuwste beveiligingsfixes voor de serversoftware."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Sicherheitsupdate",
+            "intro": "Skwirrel 2.2.4 ist ein Sicherheitsupdate. An Ihrer Arbeitsweise ändert sich nichts.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Enthält die neuesten Sicherheitskorrekturen für die Serversoftware."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Mise à jour de sécurité",
+            "intro": "Skwirrel 2.2.4 est une mise à jour de sécurité. Rien ne change dans votre façon de travailler.",
+            "sections": [
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "Contient les derniers correctifs de sécurité pour le logiciel serveur."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.3",
+      "type": "release",
+      "publishedAt": "2026-10-19T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.3",
+        "status": "released",
+        "released_on": "2026-10-19",
+        "icon": "ph-image",
+        "locales": {
+          "en-GB": {
+            "title": "Your own logo in the header",
+            "intro": "Skwirrel 2.2.3 shows your company logo in the header and stops the page from jumping wider after login.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Settings",
+                    "items": [
+                      "Upload your logo under **Settings → Application settings**. It shows in the header next to the Skwirrel logo."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "items": [
+                  "The page no longer jumps wider right after you log in."
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Je eigen logo in de kop",
+            "intro": "Skwirrel 2.2.3 toont je bedrijfslogo in de kop en voorkomt dat de pagina na het inloggen breder springt.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Instellingen",
+                    "items": [
+                      "Upload je logo onder **Instellingen → Applicatie instellingen**. Het staat in de kop naast het Skwirrel-logo."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "items": [
+                  "De pagina springt niet meer breder direct nadat je bent ingelogd."
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Ihr eigenes Logo in der Kopfzeile",
+            "intro": "Skwirrel 2.2.3 zeigt Ihr Firmenlogo in der Kopfzeile, und die Seite springt nach der Anmeldung nicht mehr breiter.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Einstellungen",
+                    "items": [
+                      "Laden Sie Ihr Logo unter **Einstellungen → Einstellungen der Anwendung** hoch. Es erscheint in der Kopfzeile neben dem Skwirrel-Logo."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "items": [
+                  "Die Seite springt direkt nach der Anmeldung nicht mehr breiter."
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Votre propre logo dans l'en-tête",
+            "intro": "Skwirrel 2.2.3 affiche le logo de votre entreprise dans l'en-tête, et la page ne s'élargit plus brusquement après la connexion.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Paramètres",
+                    "items": [
+                      "Téléversez votre logo sous **Paramètres → Paramètres de l'application**. Il apparaît dans l'en-tête à côté du logo Skwirrel."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "items": [
+                  "La page ne s'élargit plus brusquement juste après la connexion."
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.2",
+      "type": "release",
+      "publishedAt": "2026-10-14T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.2",
+        "status": "released",
+        "released_on": "2026-10-14",
+        "icon": "ph-puzzle-piece",
+        "locales": {
+          "en-GB": {
+            "title": "Trade item fields from addons",
+            "intro": "Skwirrel 2.2.2 lets addons add their own fields to trade items. Nothing changes if you use no such addon.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Trade items",
+                    "items": [
+                      "Addons can add fields to the trade item form. Changes to those fields can go through **Add to changes**, review and approval, like product fields."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Handelsartikelvelden uit addons",
+            "intro": "Met Skwirrel 2.2.2 kunnen addons eigen velden aan handelsartikelen toevoegen. Gebruik je zo'n addon niet, dan verandert er niets.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Handelsartikelen",
+                    "items": [
+                      "Addons kunnen velden toevoegen aan het handelsartikelformulier. Wijzigingen in die velden kunnen via **Toevoegen aan wijzigingen**, beoordeling en goedkeuring lopen, net als productvelden."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Handelsartikelfelder aus Add-ons",
+            "intro": "Mit Skwirrel 2.2.2 können Add-ons eigene Felder zu Handelsartikeln hinzufügen. Wenn Sie kein solches Add-on nutzen, ändert sich nichts.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Handelsartikel",
+                    "items": [
+                      "Add-ons können dem Handelsartikelformular Felder hinzufügen. Änderungen an diesen Feldern können wie Produktfelder über **Zu den Änderungen hinzufügen**, Prüfung und Freigabe laufen."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Des champs d'add-ons sur les articles commerciaux",
+            "intro": "Avec Skwirrel 2.2.2, les add-ons peuvent ajouter leurs propres champs aux articles commerciaux. Rien ne change si vous n'utilisez pas un tel add-on.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Articles commerciaux",
+                    "items": [
+                      "Les add-ons peuvent ajouter des champs au formulaire d'article commercial. Les modifications de ces champs peuvent passer par **Ajouter aux modifications**, la révision et l'approbation, comme les champs produit."
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.1",
+      "type": "release",
+      "publishedAt": "2026-10-13T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.1",
+        "status": "released",
+        "released_on": "2026-10-13",
+        "icon": "ph-tree-structure",
+        "locales": {
+          "en-GB": {
+            "title": "Parent and child relations",
+            "intro": "Skwirrel 2.2.1 adds two product relation types.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Product relations",
+                    "items": [
+                      "Link products to each other with the relation types `PARENT` and `CHILD`."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Ouder- en kindrelaties",
+            "intro": "Skwirrel 2.2.1 voegt twee productrelatietypes toe.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Productrelaties",
+                    "items": [
+                      "Koppel producten aan elkaar met de relatietypes `PARENT` en `CHILD`."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Eltern- und Kindbeziehungen",
+            "intro": "Skwirrel 2.2.1 fügt zwei Produktbeziehungstypen hinzu.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Produktbeziehungen",
+                    "items": [
+                      "Verknüpfen Sie Produkte mit den Beziehungstypen `PARENT` und `CHILD` miteinander."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Relations parent et enfant",
+            "intro": "Skwirrel 2.2.1 ajoute deux types de relations entre produits.",
+            "sections": [
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Relations entre produits",
+                    "items": [
+                      "Reliez des produits entre eux avec les types de relation `PARENT` et `CHILD`."
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "release-2.2.0",
+      "type": "release",
+      "publishedAt": "2026-10-09T00:00:00Z",
+      "revision": 1,
+      "releaseNotes": {
+        "version": "2.2.0",
+        "status": "released",
+        "released_on": "2026-10-09",
+        "icon": "ph-rocket-launch",
+        "locales": {
+          "en-GB": {
+            "title": "Reliable change requests, your own timezone and ETIM xChange 2.0",
+            "intro": "Skwirrel 2.2.0 makes change requests reliable and easy to review, shows every time in your own timezone, and moves ETIM xChange exports to version 2.0.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Action needed",
+                "items": [
+                  {
+                    "title": "Do you export in ETIM xChange V1.1, for example to 2BA?",
+                    "text": "V1.1 is retired, and scheduled V1.1 exports stop with this update. Open the export profile and click **Migrate to ETIM xChange 2.0**: you get a new 2.0 profile with the copied export settings and export days and time, but no delivery target and its schedule disabled. Configure delivery for the new profile, including the intended destination if you send exports to 2BA. Check the export settings, days and time, then enable the new profile's schedule to resume scheduled exports."
+                  },
+                  {
+                    "title": "Base → Classifications is gone.",
+                    "text": "The meta classifications are hidden from the menu, imports and exports. Custom classes on products, trade items and categories are not affected."
+                  },
+                  {
+                    "title": "The permission \"Change requests: Create\" is replaced",
+                    "text": "by *Products: change* and *Trade items: change*. Existing roles were updated automatically, so nobody loses access."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "New",
+                "groups": [
+                  {
+                    "title": "Change requests",
+                    "items": [
+                      {
+                        "title": "Propose changes without saving them.",
+                        "text": "Give a role *Products: change* or *Trade items: change*, and its users can propose changes through \"Add to changes\". A reviewer decides what gets saved."
+                      },
+                      {
+                        "title": "See pending changes in the form.",
+                        "text": "Every field shows the published value next to the proposed one."
+                      },
+                      {
+                        "title": "Review ETIM changes per feature.",
+                        "text": "A clear table per feature (added, changed, removed), a tab per classification, with filters and search."
+                      },
+                      {
+                        "title": "Clearer messages.",
+                        "text": "After submitting you see \"Changes submitted for review\" or \"No changes detected\"."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Your own timezone",
+                    "items": [
+                      {
+                        "title": "Every time on screen is in your timezone.",
+                        "text": "Set it in your account settings; until you do, Skwirrel uses your browser's."
+                      },
+                      {
+                        "title": "Export schedules have their own timezone.",
+                        "text": "Existing schedules keep running at the same moment, and the export form shows the time in your own clock."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "ETIM xChange 2.0",
+                    "items": [
+                      {
+                        "title": "Migrate an export profile in one click.",
+                        "text": "\"Migrate to ETIM xChange 2.0\" copies the export settings and export days and time of a V1.1 profile into a new 2.0 profile. Delivery targets are not copied, and the schedule stays disabled. Configure delivery and check the settings before enabling the new profile's schedule."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      {
+                        "title": "Let Seymour propose fixes.",
+                        "text": "Seymour can propose a missing translation per product, which you check and add to the changes."
+                      },
+                      {
+                        "title": "Let Seymour prepare imports.",
+                        "text": "Attach a spreadsheet of suppliers, manufacturers or brands, and Seymour turns it into a ready import file."
+                      },
+                      {
+                        "title": "",
+                        "text": "Both are off by default; switch them on under *Settings → Seymour AI*. Seymour never saves anything itself: every change goes through Skwirrel, with your own rights. The chat also got a fresh look."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Uploads and imports",
+                    "items": [
+                      {
+                        "title": "Upload charges,",
+                        "text": "both new and updated."
+                      },
+                      {
+                        "title": "Update discounts without knowing their ID:",
+                        "text": "Skwirrel finds them by price list, trade item and start date."
+                      },
+                      {
+                        "title": "Templates show which columns are required.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Custom classes on product attachments.",
+                        "text": ""
+                      },
+                      {
+                        "title": "A Close button",
+                        "text": "in batch translation edit."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Fixed",
+                "groups": [
+                  {
+                    "title": "Change requests",
+                    "items": [
+                      "Accepting a change request no longer overwrites edits made after it was submitted. If a field changed in the meantime, Skwirrel refuses and shows which field.",
+                      "An accepted or rejected request keeps showing the values that were reviewed.",
+                      "A batch-accepted request that could not be applied now says \"Accept undone\" instead of quietly going back to pending.",
+                      "A new request no longer takes over someone else's pending request, and reviewers no longer see an access error after accepting."
+                    ]
+                  },
+                  {
+                    "title": "ETIM and exports",
+                    "items": [
+                      "2BA exports in ETIM xChange 2.0 again send the delivery settings along, so automatic acceptance, the report e-mail and the error threshold work.",
+                      "ETIM classes always sit in the right group, and ETIM data drops translations that ETIM no longer publishes."
+                    ]
+                  },
+                  {
+                    "title": "Other",
+                    "items": [
+                      "Batch translation edit no longer writes into the *Default* context by mistake.",
+                      "*Force import* after skipped errors saves the valid rows again.",
+                      "The batch upload of product attachments links the files to the product again.",
+                      "The product count per category no longer includes products in the trash.",
+                      "A menu heading without its own page no longer opens an error page.",
+                      "Clearer messages in charge uploads, text feature uploads and translation services."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "For integrators",
+                "text": "For teams that connect to Skwirrel through the Web API, tabular import and export, or scheduled exports.",
+                "table": {
+                  "columns": [
+                    "Area",
+                    "What changes"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "New method `saveSimpleAttachmentFeature` to set custom class values on attachments."
+                    ],
+                    [
+                      "Web API",
+                      "`getMetaClassifications` still works, but will be removed in a later release. Stop relying on it."
+                    ],
+                    [
+                      "Web API and exports",
+                      "Custom classifications filtered by several collections are no longer returned twice."
+                    ],
+                    [
+                      "Changed-since syncs",
+                      "Changing an attachment's custom classes now marks its linked products as changed, so your sync picks them up."
+                    ],
+                    [
+                      "Tabular import and export",
+                      "The `classification` and `classification_entity` options are gone. Scheduled exports that used them are switched off."
+                    ],
+                    [
+                      "Tabular import",
+                      "Charges: new and updated rows, matching on `charge_code`, a `charge_id` column. Discounts: updates found by price list, trade item and start date."
+                    ],
+                    [
+                      "Scheduled exports",
+                      "Each export profile has its own timezone. Existing schedules keep their current moment."
+                    ],
+                    [
+                      "ETIM xChange",
+                      "V1.1 export is retired; scheduled V1.1 exports stop. Use ETIM xChange 2.0."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "nl-NL": {
+            "title": "Betrouwbare wijzigingsverzoeken, je eigen tijdzone en ETIM xChange 2.0",
+            "intro": "Skwirrel 2.2.0 maakt wijzigingsverzoeken betrouwbaar en makkelijk te beoordelen, toont elke tijd in je eigen tijdzone en zet ETIM xChange-exports over naar versie 2.0.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Actie nodig",
+                "items": [
+                  {
+                    "title": "Exporteer je in ETIM xChange V1.1, bijvoorbeeld naar 2BA?",
+                    "text": "V1.1 is uitgefaseerd en geplande V1.1-exports stoppen met deze update. Open het exportprofiel en klik op **Migreren naar ETIM xChange 2.0**: je krijgt een nieuw 2.0-profiel met de gekopieerde exportinstellingen en exportdagen/-tijd, maar zonder afleverbestemming en met de planning uitgeschakeld. Configureer de aflevering voor het nieuwe profiel, inclusief de gewenste bestemming als je exports naar 2BA verstuurt. Controleer de exportinstellingen en dagen/tijd en schakel daarna de planning van het nieuwe profiel in om geplande exports te hervatten."
+                  },
+                  {
+                    "title": "Basisgegevens → Classificaties is verdwenen.",
+                    "text": "De metaclassificaties zijn verborgen in het menu, in imports en in exports. Eigen classes op producten, handelsartikelen en categorieën blijven gewoon werken."
+                  },
+                  {
+                    "title": "Het recht \"Wijzigingsverzoeken: aanmaken\" is vervangen",
+                    "text": "door *Producten: wijzigen* en *Handelsartikelen: wijzigen*. Bestaande rollen zijn automatisch bijgewerkt, dus niemand verliest toegang."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Nieuw",
+                "groups": [
+                  {
+                    "title": "Wijzigingsverzoeken",
+                    "items": [
+                      {
+                        "title": "Stel wijzigingen voor zonder ze op te slaan.",
+                        "text": "Geef een rol *Producten: wijzigen* of *Handelsartikelen: wijzigen*, en de gebruikers kunnen wijzigingen voorstellen via \"Toevoegen aan wijzigingen\". Een beoordelaar beslist wat er wordt opgeslagen."
+                      },
+                      {
+                        "title": "Zie openstaande wijzigingen in het formulier.",
+                        "text": "Elk veld toont de gepubliceerde waarde naast de voorgestelde."
+                      },
+                      {
+                        "title": "Beoordeel ETIM-wijzigingen per kenmerk.",
+                        "text": "Een overzichtelijke tabel per kenmerk (toegevoegd, gewijzigd, verwijderd), een tab per classificatie, met filters en zoeken."
+                      },
+                      {
+                        "title": "Duidelijkere meldingen.",
+                        "text": "Na het indienen zie je \"Wijzigingen ingediend ter beoordeling\" of \"Geen wijzigingen gedetecteerd\"."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Je eigen tijdzone",
+                    "items": [
+                      {
+                        "title": "Elke tijd op het scherm staat in jouw tijdzone.",
+                        "text": "Stel hem in bij je accountinstellingen; tot die tijd gebruikt Skwirrel de tijdzone van je browser."
+                      },
+                      {
+                        "title": "Exportplanningen hebben een eigen tijdzone.",
+                        "text": "Bestaande planningen blijven op hetzelfde moment draaien, en het exportformulier toont de tijd op jouw klok."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "ETIM xChange 2.0",
+                    "items": [
+                      {
+                        "title": "Migreer een exportprofiel in één klik.",
+                        "text": "\"Migreren naar ETIM xChange 2.0\" kopieert de exportinstellingen en exportdagen/-tijd van een V1.1-profiel naar een nieuw 2.0-profiel. Afleverbestemmingen worden niet gekopieerd en de planning blijft uitgeschakeld. Configureer de aflevering en controleer de instellingen voordat je de planning van het nieuwe profiel inschakelt."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      {
+                        "title": "Laat Seymour verbeteringen voorstellen.",
+                        "text": "Seymour kan per product een ontbrekende vertaling voorstellen, die je controleert en toevoegt aan de wijzigingen."
+                      },
+                      {
+                        "title": "Laat Seymour imports voorbereiden.",
+                        "text": "Voeg een spreadsheet met leveranciers, fabrikanten of merken toe, en Seymour maakt er een kant-en-klaar importbestand van."
+                      },
+                      {
+                        "title": "",
+                        "text": "Beide staan standaard uit; zet ze aan onder *Instellingen → Seymour AI*. Seymour slaat zelf nooit iets op: elke wijziging gaat via Skwirrel, met jouw eigen rechten. De chat heeft ook een frisse nieuwe look."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Uploads en imports",
+                    "items": [
+                      {
+                        "title": "Upload toeslagen,",
+                        "text": "zowel nieuwe als bijgewerkte."
+                      },
+                      {
+                        "title": "Werk kortingen bij zonder hun ID te kennen:",
+                        "text": "Skwirrel vindt ze op prijslijst, handelsartikel en startdatum."
+                      },
+                      {
+                        "title": "Sjablonen tonen welke kolommen verplicht zijn.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Eigen classes op productbijlagen.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Een knop Sluiten",
+                        "text": "in het batchgewijs bewerken van vertalingen."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Opgelost",
+                "groups": [
+                  {
+                    "title": "Wijzigingsverzoeken",
+                    "items": [
+                      "Een wijzigingsverzoek accepteren overschrijft niet langer wijzigingen die na het indienen zijn gedaan. Is een veld intussen gewijzigd, dan weigert Skwirrel en toont welk veld.",
+                      "Een geaccepteerd of afgewezen verzoek blijft de beoordeelde waarden tonen.",
+                      "Een batchgewijs geaccepteerd verzoek dat niet kon worden doorgevoerd, toont nu \"Accepteren ongedaan gemaakt\" in plaats van stilletjes terug te gaan naar openstaand.",
+                      "Een nieuw verzoek neemt niet langer het openstaande verzoek van iemand anders over, en beoordelaars zien na het accepteren geen toegangsfout meer."
+                    ]
+                  },
+                  {
+                    "title": "ETIM en exports",
+                    "items": [
+                      "2BA-exports in ETIM xChange 2.0 sturen de leveringsinstellingen weer mee, zodat automatisch accepteren, de rapportagemail en de foutdrempel werken.",
+                      "ETIM-classes staan altijd in de juiste groep, en ETIM-gegevens laten vertalingen vallen die ETIM niet meer publiceert."
+                    ]
+                  },
+                  {
+                    "title": "Overig",
+                    "items": [
+                      "Batchgewijs vertalingen bewerken schrijft niet langer per ongeluk in de context *Standaard*.",
+                      "*Forceer import* na overgeslagen fouten slaat de geldige rijen weer op.",
+                      "De batchupload van productbijlagen koppelt de bestanden weer aan het product.",
+                      "Het aantal producten per categorie telt geen producten in de prullenbak meer mee.",
+                      "Een menukop zonder eigen pagina opent geen foutpagina meer.",
+                      "Duidelijkere meldingen bij het uploaden van toeslagen en tekstkenmerken, en bij vertaaldiensten."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Voor integrators",
+                "text": "Voor teams die via de Web API, tabulaire import en export, of geplande exports met Skwirrel koppelen.",
+                "table": {
+                  "columns": [
+                    "Onderdeel",
+                    "Wat verandert"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "Nieuwe methode `saveSimpleAttachmentFeature` om waarden van eigen classes op bijlagen te zetten."
+                    ],
+                    [
+                      "Web API",
+                      "`getMetaClassifications` werkt nog, maar verdwijnt in een latere release. Bouw er niet meer op."
+                    ],
+                    [
+                      "Web API en exports",
+                      "Eigen classificaties die op meerdere collecties zijn gefilterd, komen niet langer dubbel terug."
+                    ],
+                    [
+                      "Changed-since-synchronisaties",
+                      "Het wijzigen van de eigen classes van een bijlage markeert de gekoppelde producten nu als gewijzigd, zodat je synchronisatie ze oppikt."
+                    ],
+                    [
+                      "Tabulaire import en export",
+                      "De opties `classification` en `classification_entity` zijn verdwenen. Geplande exports die ze gebruikten, zijn uitgezet."
+                    ],
+                    [
+                      "Tabulaire import",
+                      "Toeslagen: nieuwe en bijgewerkte rijen, matchend op `charge_code`, plus een kolom `charge_id`. Kortingen: updates gevonden op prijslijst, handelsartikel en startdatum."
+                    ],
+                    [
+                      "Geplande exports",
+                      "Elk exportprofiel heeft een eigen tijdzone. Bestaande planningen houden hun huidige moment."
+                    ],
+                    [
+                      "ETIM xChange",
+                      "Export in V1.1 is uitgefaseerd; geplande V1.1-exports stoppen. Gebruik ETIM xChange 2.0."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "de-DE": {
+            "title": "Zuverlässige Änderungswünsche, Ihre eigene Zeitzone und ETIM xChange 2.0",
+            "intro": "Skwirrel 2.2.0 macht Änderungswünsche zuverlässig und leicht zu prüfen, zeigt jede Uhrzeit in Ihrer eigenen Zeitzone und stellt ETIM-xChange-Exporte auf Version 2.0 um.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Handlungsbedarf",
+                "items": [
+                  {
+                    "title": "Exportieren Sie in ETIM xChange V1.1, zum Beispiel an 2BA?",
+                    "text": "V1.1 wird nicht mehr unterstützt, und geplante V1.1-Exporte stoppen mit diesem Update. Öffnen Sie das Exportprofil und klicken Sie auf **Zu ETIM xChange 2.0 migrieren**: Sie erhalten ein neues 2.0-Profil mit den kopierten Exporteinstellungen, Exporttagen und Exportuhrzeit, aber ohne Lieferziel und mit deaktiviertem Zeitplan. Konfigurieren Sie die Lieferung für das neue Profil, einschließlich des gewünschten Ziels, wenn Sie Exporte an 2BA senden. Prüfen Sie die Exporteinstellungen, Exporttage und Exportuhrzeit und aktivieren Sie anschließend den Zeitplan des neuen Profils, um geplante Exporte fortzusetzen."
+                  },
+                  {
+                    "title": "Stammdaten → Klassifizierungen ist entfallen.",
+                    "text": "Die Metaklassifizierungen sind im Menü, in Importen und in Exporten ausgeblendet. Benutzerdefinierte Klassen an Produkten, Handelsartikeln und Kategorien sind nicht betroffen."
+                  },
+                  {
+                    "title": "Das Recht „Änderungswünsche: Erstellen“ wurde ersetzt",
+                    "text": "durch *Produkte: ändern* und *Handelsartikel: ändern*. Bestehende Rollen wurden automatisch angepasst, niemand verliert also den Zugriff."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Neu",
+                "groups": [
+                  {
+                    "title": "Änderungswünsche",
+                    "items": [
+                      {
+                        "title": "Änderungen vorschlagen, ohne sie zu speichern.",
+                        "text": "Geben Sie einer Rolle *Produkte: ändern* oder *Handelsartikel: ändern*, und ihre Benutzer können Änderungen über „Zu den Änderungen hinzufügen“ vorschlagen. Ein Prüfer entscheidet, was gespeichert wird."
+                      },
+                      {
+                        "title": "Offene Änderungen im Formular sehen.",
+                        "text": "Jedes Feld zeigt den veröffentlichten Wert neben dem vorgeschlagenen."
+                      },
+                      {
+                        "title": "ETIM-Änderungen pro Merkmal prüfen.",
+                        "text": "Eine übersichtliche Tabelle pro Merkmal (hinzugefügt, geändert, entfernt), ein Tab pro Klassifizierung, mit Filtern und Suche."
+                      },
+                      {
+                        "title": "Klarere Meldungen.",
+                        "text": "Nach dem Einreichen sehen Sie „Änderungen zur Prüfung eingereicht“ oder „Keine Änderungen festgestellt“."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Ihre eigene Zeitzone",
+                    "items": [
+                      {
+                        "title": "Jede Uhrzeit auf dem Bildschirm steht in Ihrer Zeitzone.",
+                        "text": "Legen Sie sie in Ihren Kontoeinstellungen fest; bis dahin verwendet Skwirrel die Zeitzone Ihres Browsers."
+                      },
+                      {
+                        "title": "Exportzeitpläne haben eine eigene Zeitzone.",
+                        "text": "Bestehende Zeitpläne laufen weiter zum selben Zeitpunkt, und das Exportformular zeigt die Uhrzeit in Ihrer eigenen Zeit."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "ETIM xChange 2.0",
+                    "items": [
+                      {
+                        "title": "Ein Exportprofil mit einem Klick migrieren.",
+                        "text": "„Zu ETIM xChange 2.0 migrieren“ kopiert die Exporteinstellungen, Exporttage und Exportuhrzeit eines V1.1-Profils in ein neues 2.0-Profil. Lieferziele werden nicht kopiert, und der Zeitplan bleibt deaktiviert. Konfigurieren Sie die Lieferung und prüfen Sie die Einstellungen, bevor Sie den Zeitplan des neuen Profils aktivieren."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      {
+                        "title": "Seymour Verbesserungen vorschlagen lassen.",
+                        "text": "Seymour kann pro Produkt eine fehlende Übersetzung vorschlagen, die Sie prüfen und zu den Änderungen hinzufügen."
+                      },
+                      {
+                        "title": "Seymour Importe vorbereiten lassen.",
+                        "text": "Hängen Sie eine Tabelle mit Lieferanten, Herstellern oder Marken an, und Seymour macht daraus eine fertige Importdatei."
+                      },
+                      {
+                        "title": "",
+                        "text": "Beides ist standardmäßig ausgeschaltet; schalten Sie es unter *Einstellungen → Seymour AI* ein. Seymour speichert selbst nie etwas: Jede Änderung läuft über Skwirrel, mit Ihren eigenen Rechten. Der Chat hat außerdem ein frisches Aussehen bekommen."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Uploads und Importe",
+                    "items": [
+                      {
+                        "title": "Gebühren hochladen,",
+                        "text": "sowohl neue als auch geänderte."
+                      },
+                      {
+                        "title": "Ermäßigungen ändern, ohne ihre ID zu kennen:",
+                        "text": "Skwirrel findet sie über Preisliste, Handelsartikel und Startdatum."
+                      },
+                      {
+                        "title": "Vorlagen zeigen, welche Spalten Pflicht sind.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Benutzerdefinierte Klassen an Produktanhängen.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Eine Schaltfläche Schließen",
+                        "text": "in der Stapelbearbeitung von Übersetzungen."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Behoben",
+                "groups": [
+                  {
+                    "title": "Änderungswünsche",
+                    "items": [
+                      "Das Annehmen eines Änderungswunschs überschreibt keine Änderungen mehr, die nach dem Einreichen gemacht wurden. Wurde ein Feld inzwischen geändert, lehnt Skwirrel ab und zeigt, welches Feld.",
+                      "Ein angenommener oder abgelehnter Wunsch zeigt weiterhin die geprüften Werte.",
+                      "Ein im Stapel angenommener Wunsch, der nicht angewendet werden konnte, zeigt jetzt „Annahme rückgängig gemacht“, statt stillschweigend auf offen zurückzufallen.",
+                      "Ein neuer Wunsch übernimmt nicht mehr den offenen Wunsch eines anderen, und Prüfer sehen nach dem Annehmen keinen Zugriffsfehler mehr."
+                    ]
+                  },
+                  {
+                    "title": "ETIM und Exporte",
+                    "items": [
+                      "2BA-Exporte in ETIM xChange 2.0 senden die Liefereinstellungen wieder mit, sodass automatisches Annehmen, die Bericht-E-Mail und die Fehlerschwelle funktionieren.",
+                      "ETIM-Klassen stehen immer in der richtigen Gruppe, und ETIM-Daten verwerfen Übersetzungen, die ETIM nicht mehr veröffentlicht."
+                    ]
+                  },
+                  {
+                    "title": "Sonstiges",
+                    "items": [
+                      "Die Stapelbearbeitung von Übersetzungen schreibt nicht mehr versehentlich in den Kontext *Standard*.",
+                      "*Import erzwingen* nach übersprungenen Fehlern speichert die gültigen Zeilen wieder.",
+                      "Der Stapel-Upload von Produktanhängen verknüpft die Dateien wieder mit dem Produkt.",
+                      "Die Anzahl der Produkte pro Kategorie zählt Produkte im Papierkorb nicht mehr mit.",
+                      "Eine Menüüberschrift ohne eigene Seite öffnet keine Fehlerseite mehr.",
+                      "Klarere Meldungen beim Hochladen von Gebühren und Textmerkmalen sowie bei Übersetzungsdiensten."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Für Integratoren",
+                "text": "Für Teams, die Skwirrel über die Web-API, tabellarischen Import und Export oder geplante Exporte anbinden.",
+                "table": {
+                  "columns": [
+                    "Bereich",
+                    "Was sich ändert"
+                  ],
+                  "rows": [
+                    [
+                      "Web-API",
+                      "Neue Methode `saveSimpleAttachmentFeature`, um Werte benutzerdefinierter Klassen an Anhängen zu setzen."
+                    ],
+                    [
+                      "Web-API",
+                      "`getMetaClassifications` funktioniert noch, wird aber in einem späteren Release entfernt. Verlassen Sie sich nicht mehr darauf."
+                    ],
+                    [
+                      "Web-API und Exporte",
+                      "Benutzerdefinierte Klassifizierungen, die nach mehreren Sammlungen gefiltert werden, kommen nicht mehr doppelt zurück."
+                    ],
+                    [
+                      "Changed-since-Synchronisierungen",
+                      "Eine Änderung an den benutzerdefinierten Klassen eines Anhangs markiert jetzt die verknüpften Produkte als geändert, sodass Ihre Synchronisierung sie erfasst."
+                    ],
+                    [
+                      "Tabellarischer Import und Export",
+                      "Die Optionen `classification` und `classification_entity` sind entfallen. Geplante Exporte, die sie verwendeten, wurden ausgeschaltet."
+                    ],
+                    [
+                      "Tabellarischer Import",
+                      "Gebühren: neue und geänderte Zeilen, Abgleich über `charge_code`, dazu eine Spalte `charge_id`. Ermäßigungen: Änderungen werden über Preisliste, Handelsartikel und Startdatum gefunden."
+                    ],
+                    [
+                      "Geplante Exporte",
+                      "Jedes Exportprofil hat eine eigene Zeitzone. Bestehende Zeitpläne behalten ihren aktuellen Zeitpunkt."
+                    ],
+                    [
+                      "ETIM xChange",
+                      "Der Export in V1.1 wird nicht mehr unterstützt; geplante V1.1-Exporte stoppen. Verwenden Sie ETIM xChange 2.0."
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "fr-FR": {
+            "title": "Des demandes de modification fiables, votre propre fuseau horaire et ETIM xChange 2.0",
+            "intro": "Skwirrel 2.2.0 rend les demandes de modification fiables et faciles à valider, affiche chaque heure dans votre propre fuseau horaire et fait passer les exports ETIM xChange à la version 2.0.",
+            "sections": [
+              {
+                "kind": "action",
+                "heading": "Action requise",
+                "items": [
+                  {
+                    "title": "Exportez-vous en ETIM xChange V1.1, par exemple vers 2BA ?",
+                    "text": "La V1.1 n'est plus prise en charge, et les exports V1.1 planifiés s'arrêtent avec cette mise à jour. Ouvrez le profil d'exportation et cliquez sur **Migrer vers ETIM xChange 2.0** : vous obtenez un nouveau profil 2.0 qui reprend les paramètres d'export ainsi que les jours et l'heure d'export, mais sans destination de livraison et avec la planification désactivée. Configurez la livraison pour le nouveau profil, y compris la destination souhaitée si vous envoyez des exports à 2BA. Vérifiez les paramètres d'export ainsi que les jours et l'heure, puis activez la planification du nouveau profil pour reprendre les exports planifiés."
+                  },
+                  {
+                    "title": "Données de base → Classifications a disparu.",
+                    "text": "Les méta-classifications sont masquées dans le menu, les imports et les exports. Les classes personnalisées sur les produits, les articles de commerce et les catégories ne sont pas concernées."
+                  },
+                  {
+                    "title": "Le droit « Demandes de modification : créer » est remplacé",
+                    "text": "par *Produits : modifier* et *Articles de commerce : modifier*. Les rôles existants ont été mis à jour automatiquement, personne ne perd donc son accès."
+                  }
+                ]
+              },
+              {
+                "kind": "new",
+                "heading": "Nouveau",
+                "groups": [
+                  {
+                    "title": "Demandes de modification",
+                    "items": [
+                      {
+                        "title": "Proposez des modifications sans les enregistrer.",
+                        "text": "Donnez à un rôle *Produits : modifier* ou *Articles de commerce : modifier*, et ses utilisateurs peuvent proposer des modifications via « Ajouter aux modifications ». Un valideur décide de ce qui est enregistré."
+                      },
+                      {
+                        "title": "Voyez les modifications en attente dans le formulaire.",
+                        "text": "Chaque champ affiche la valeur publiée à côté de la valeur proposée."
+                      },
+                      {
+                        "title": "Validez les modifications ETIM par caractéristique.",
+                        "text": "Un tableau clair par caractéristique (ajoutée, modifiée, supprimée), un onglet par classification, avec filtres et recherche."
+                      },
+                      {
+                        "title": "Des messages plus clairs.",
+                        "text": "Après l'envoi, vous voyez « Modifications soumises pour validation » ou « Aucune modification détectée »."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Votre propre fuseau horaire",
+                    "items": [
+                      {
+                        "title": "Chaque heure à l'écran est dans votre fuseau horaire.",
+                        "text": "Réglez-le dans les paramètres de votre compte ; en attendant, Skwirrel utilise celui de votre navigateur."
+                      },
+                      {
+                        "title": "Les planifications d'export ont leur propre fuseau horaire.",
+                        "text": "Les planifications existantes continuent à s'exécuter au même moment, et le formulaire d'export affiche l'heure selon votre propre horloge."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "ETIM xChange 2.0",
+                    "items": [
+                      {
+                        "title": "Migrez un profil d'exportation en un clic.",
+                        "text": "« Migrer vers ETIM xChange 2.0 » copie les paramètres d'export ainsi que les jours et l'heure d'export d'un profil V1.1 dans un nouveau profil 2.0. Les destinations de livraison ne sont pas copiées et la planification reste désactivée. Configurez la livraison et vérifiez les paramètres avant d'activer la planification du nouveau profil."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Seymour AI",
+                    "items": [
+                      {
+                        "title": "Laissez Seymour proposer des corrections.",
+                        "text": "Seymour peut proposer une traduction manquante par produit, que vous vérifiez et ajoutez aux modifications."
+                      },
+                      {
+                        "title": "Laissez Seymour préparer les imports.",
+                        "text": "Joignez une feuille de calcul de fournisseurs, de fabricants ou de marques, et Seymour en fait un fichier d'import prêt à l'emploi."
+                      },
+                      {
+                        "title": "",
+                        "text": "Les deux sont désactivés par défaut ; activez-les sous *Paramètres → Seymour AI*. Seymour n'enregistre jamais rien lui-même : chaque modification passe par Skwirrel, avec vos propres droits. Le chat a aussi fait peau neuve."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Téléversements et imports",
+                    "items": [
+                      {
+                        "title": "Téléversez des frais,",
+                        "text": "nouveaux comme mis à jour."
+                      },
+                      {
+                        "title": "Mettez à jour des réductions sans connaître leur ID :",
+                        "text": "Skwirrel les retrouve par liste de prix, article de commerce et date de début."
+                      },
+                      {
+                        "title": "Les modèles indiquent les colonnes obligatoires.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Classes personnalisées sur les pièces jointes de produits.",
+                        "text": ""
+                      },
+                      {
+                        "title": "Un bouton Fermer",
+                        "text": "dans la modification groupée des traductions."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "fixed",
+                "heading": "Corrigé",
+                "groups": [
+                  {
+                    "title": "Demandes de modification",
+                    "items": [
+                      "Accepter une demande de modification n'écrase plus les modifications faites après son envoi. Si un champ a changé entre-temps, Skwirrel refuse et indique lequel.",
+                      "Une demande acceptée ou refusée continue d'afficher les valeurs validées.",
+                      "Une demande acceptée en lot qui n'a pas pu être appliquée affiche désormais « Acceptation annulée » au lieu de revenir discrètement en attente.",
+                      "Une nouvelle demande ne reprend plus la demande en attente de quelqu'un d'autre, et les valideurs ne voient plus d'erreur d'accès après avoir accepté."
+                    ]
+                  },
+                  {
+                    "title": "ETIM et exports",
+                    "items": [
+                      "Les exports 2BA en ETIM xChange 2.0 transmettent de nouveau les paramètres de livraison, si bien que l'acceptation automatique, l'e-mail de rapport et le seuil d'erreurs fonctionnent.",
+                      "Les classes ETIM sont toujours dans le bon groupe, et les données ETIM abandonnent les traductions qu'ETIM ne publie plus."
+                    ]
+                  },
+                  {
+                    "title": "Divers",
+                    "items": [
+                      "La modification groupée des traductions n'écrit plus par erreur dans le contexte *Par défaut*.",
+                      "*Forcer l'importation* après des erreurs ignorées enregistre de nouveau les lignes valides.",
+                      "Le téléversement groupé de pièces jointes de produits relie de nouveau les fichiers au produit.",
+                      "Le nombre de produits par catégorie ne compte plus les produits dans la corbeille.",
+                      "Un titre de menu sans page propre n'ouvre plus de page d'erreur.",
+                      "Des messages plus clairs lors du téléversement de frais et de caractéristiques texte, et dans les services de traduction."
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "integrators",
+                "heading": "Pour les intégrateurs",
+                "text": "Pour les équipes qui se connectent à Skwirrel via la Web API, l'import et l'export tabulaires ou les exports planifiés.",
+                "table": {
+                  "columns": [
+                    "Domaine",
+                    "Ce qui change"
+                  ],
+                  "rows": [
+                    [
+                      "Web API",
+                      "Nouvelle méthode `saveSimpleAttachmentFeature` pour définir les valeurs de classes personnalisées sur les pièces jointes."
+                    ],
+                    [
+                      "Web API",
+                      "`getMetaClassifications` fonctionne encore, mais sera supprimée dans une version ultérieure. Ne comptez plus dessus."
+                    ],
+                    [
+                      "Web API et exports",
+                      "Les classifications personnalisées filtrées sur plusieurs collections ne sont plus renvoyées en double."
+                    ],
+                    [
+                      "Synchronisations changed-since",
+                      "Modifier les classes personnalisées d'une pièce jointe marque désormais ses produits liés comme modifiés, afin que votre synchronisation les récupère."
+                    ],
+                    [
+                      "Import et export tabulaires",
+                      "Les options `classification` et `classification_entity` ont disparu. Les exports planifiés qui les utilisaient sont désactivés."
+                    ],
+                    [
+                      "Import tabulaire",
+                      "Frais : lignes nouvelles et mises à jour, rapprochées sur `charge_code`, avec une colonne `charge_id`. Réductions : mises à jour retrouvées par liste de prix, article de commerce et date de début."
+                    ],
+                    [
+                      "Exports planifiés",
+                      "Chaque profil d'exportation a son propre fuseau horaire. Les planifications existantes gardent leur moment actuel."
+                    ],
+                    [
+                      "ETIM xChange",
+                      "L'export en V1.1 n'est plus pris en charge ; les exports V1.1 planifiés s'arrêtent. Utilisez ETIM xChange 2.0."
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

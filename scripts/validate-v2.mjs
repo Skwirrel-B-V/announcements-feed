@@ -113,7 +113,11 @@ function timestamp(value, at) {
 
 const CODE_SPAN = /`[^`]+`/g;
 
+// Control, zero-width and bidi characters can make text read differently than it is
+const HIDDEN_CHARS = /[\u0000-\u0009\u000B-\u001F\u007F\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/;
+
 function inlineText(value, at) {
+	if (HIDDEN_CHARS.test(value)) error(at, 'control, zero-width or bidi characters are not allowed');
 	const outside = value.replace(CODE_SPAN, '');
 	if (/<\/?[a-zA-Z!]/.test(outside)) error(at, 'HTML is not allowed');
 	if (outside.includes('](')) error(at, 'links are not allowed; use the item url field');
@@ -150,7 +154,7 @@ function textField(value, at) {
 
 function section(s, at, release) {
 	if (!isObject(s)) return error(at, 'a section is an object');
-	const kind = KINDS[s.kind];
+	const kind = Object.hasOwn(KINDS, s.kind) ? KINDS[s.kind] : undefined;
 	if (!kind) return error(at, `unknown kind "${s.kind}"`);
 	if (kind.release !== release) error(at, `kind "${s.kind}" is not allowed in ${release ? 'release items' : 'other announcements'}`);
 	allowOnly(s, ['kind', 'heading', ...kind.fields], at);
@@ -266,19 +270,19 @@ function content(item) {
 function compareWithBase(feed, ref) {
 	const git = (...args) => execFileSync('git', args, {encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']});
 	try {
-		git('rev-parse', '--verify', '--quiet', `${ref}^{commit}`);
+		git('rev-parse', '--verify', '--quiet', '--end-of-options', `${ref}^{commit}`);
 	} catch {
 		return error(FEED, `cannot read the comparison ref ${ref}; fetch it first`);
 	}
 	let text = null;
 	let exists = true;
 	try {
-		git('cat-file', '-e', `${ref}:${FEED}`);
+		git('cat-file', '-e', '--end-of-options', `${ref}:${FEED}`);
 	} catch {
 		exists = false;
 	}
 	if (exists) {
-		text = git('show', `${ref}:${FEED}`);
+		text = git('show', '--end-of-options', `${ref}:${FEED}`);
 	} else {
 		// Only a valid commit without the file is a first publication
 		console.log(`No ${FEED} on ${ref}: every item counts as new`);
@@ -389,12 +393,20 @@ function validateBare(target) {
 // ---------------------------------------------------------------- main
 
 const args = process.argv.slice(2);
-// Anything but --base <ref> and --bare <path> is a typo that would quietly skip a check
+// Anything but one --base <ref> or one --bare <path> would quietly skip a check
 for (let i = 0; i < args.length; i += 2) {
 	if (!['--base', '--bare'].includes(args[i])) {
 		console.error(`error: unknown argument ${args[i]}; use --base <ref> or --bare <path>`);
 		process.exit(1);
 	}
+	if (args.indexOf(args[i]) !== i) {
+		console.error(`error: ${args[i]} given more than once`);
+		process.exit(1);
+	}
+}
+if (args.includes('--base') && args.includes('--bare')) {
+	console.error('error: use --base or --bare, not both');
+	process.exit(1);
 }
 const option = (name) => {
 	const i = args.indexOf(name);

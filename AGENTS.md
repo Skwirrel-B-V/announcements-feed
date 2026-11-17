@@ -1,7 +1,4 @@
-# CLAUDE.md — Skwirrel announcements feed
-
-Guidance for AI coding agents working in this repo. (Identical to `AGENTS.md`,
-keep the two in sync.)
+# AGENTS.md — announcements-feed
 
 ## What this is
 
@@ -93,12 +90,9 @@ Each item requires `id` (unique, stable, never reused), `type`, `publishedAt`,
 - To retire an item, set `expiresAt` or remove it in a PR. Don't rewrite history.
 - An empty `announcements` array is valid and means nothing to show.
 - Keep dependencies at zero. Both validators run on plain Node.
-- Keep `AGENTS.md` identical to `CLAUDE.md`. CI fails when they differ.
 
 ## Where this fits
 
-This repo is cloned into the Skwirrel workspace as
-`repositories/announcements-feed` (see the workspace `repos.manifest`). The
-in-app consumer lives in `skwirrel-core` (remote `skwirrel-2.0`,
-`App\Models\ReleaseNotes\AnnouncementFeed`). A change to the format must be
-coordinated with that repo.
+The in-app consumer lives in `skwirrel-core` (remote `skwirrel-2.0`,
+`App\Models\ReleaseNotes\AnnouncementFeed`). Coordinate any change to the format
+with that repo.

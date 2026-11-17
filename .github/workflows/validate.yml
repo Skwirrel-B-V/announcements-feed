@@ -39,5 +39,5 @@ jobs:
           else
             node scripts/validate-v2.mjs
           fi
-      - name: AGENTS.md mirrors CLAUDE.md
-        run: cmp CLAUDE.md AGENTS.md
+      - name: CLAUDE.md imports AGENTS.md
+        run: head -n 1 CLAUDE.md | grep -qx '@AGENTS.md'

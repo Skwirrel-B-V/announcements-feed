@@ -1,6 +1,6 @@
 # Skwirrel announcement feed
 
-> **This repository is public.** Everything committed here is readable by anyone and published to customers when merged to `main`. See [CLAUDE.md](CLAUDE.md) for the rules.
+> **This repository is public.** Everything committed here is readable by anyone and published to customers when merged to `main`. See [AGENTS.md](AGENTS.md) for the rules.
 
 Live feeds:
 
@@ -11,7 +11,7 @@ Central, version-controlled customer announcements for Skwirrel. `feed-v2.json` 
 
 ## Publishing
 
-Release notes go in `feed-v2.json`, other v1 announcements in `feed.json`, always through a pull request. The steps, including the `revision` rules for `feed-v2.json`, are under "Publishing release notes" in [CLAUDE.md](CLAUDE.md). The validation workflow checks both files before publication. GitHub Pages publishes the root directory from `main` after Pages is enabled in repository Settings > Pages (Deploy from a branch, `main`, `/ (root)`).
+Release notes go in `feed-v2.json`, other v1 announcements in `feed.json`, always through a pull request. The steps, including the `revision` rules for `feed-v2.json`, are under "Publishing release notes" in [AGENTS.md](AGENTS.md). The validation workflow checks both files before publication. GitHub Pages publishes the root directory from `main` after Pages is enabled in repository Settings > Pages (Deploy from a branch, `main`, `/ (root)`).
 
 ## v1 announcement format (feed.json)
 
